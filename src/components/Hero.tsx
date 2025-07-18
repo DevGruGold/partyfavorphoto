@@ -5,7 +5,18 @@ import partyFavorLogo from "@/assets/party-favor-logo.png";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
+      {/* White Header Bar with Logo */}
+      <div className="relative z-20 bg-white shadow-md">
+        <div className="container mx-auto px-4 py-4 flex justify-center">
+          <img 
+            src={partyFavorLogo} 
+            alt="Party Favor Photo" 
+            className="h-16 md:h-20 object-contain"
+          />
+        </div>
+      </div>
+
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img 
@@ -17,15 +28,8 @@ const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-        {/* Logo */}
-        <div className="mb-8 flex justify-center">
-          <img 
-            src={partyFavorLogo} 
-            alt="Party Favor Photo" 
-            className="h-24 md:h-32 object-contain filter drop-shadow-2xl"
-          />
-        </div>
+      <div className="relative z-10 flex-1 flex items-center justify-center text-center text-white px-4">
+        <div className="max-w-4xl mx-auto">
         
         {/* Main Heading */}
         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
@@ -77,6 +81,7 @@ const Hero = () => {
             <Mail className="h-5 w-5" />
             <span>info@partyfavorphoto.com</span>
           </div>
+        </div>
         </div>
       </div>
     </section>
