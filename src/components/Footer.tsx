@@ -11,13 +11,13 @@ const Footer = () => {
             <img 
               src={partyFavorLogo} 
               alt="Party Favor Photo" 
-              className="h-16 mb-4 filter brightness-0 invert"
+              className="h-12 mb-4 filter brightness-0 invert"
             />
-            <p className="mb-4 text-primary-foreground/80">
-              Award-winning photo booth experiences bringing joy and laughter to events across the DMV area and beyond.
+            <p className="mb-4 text-primary-foreground/80 max-w-md">
+              Professional photo booth services bringing memorable experiences to events across the Washington D.C. metro area.
             </p>
             <p className="text-sm text-primary-foreground/60">
-              "It's where the party's @"
+              Established in Arlington, Virginia
             </p>
           </div>
           
@@ -57,8 +57,8 @@ const Footer = () => {
         {/* Social Media and Copyright */}
         <div className="border-t border-primary-foreground/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-4 mb-4 md:mb-0">
-            <Instagram className="h-5 w-5 hover:text-primary-glow cursor-pointer transition-colors" />
-            <Facebook className="h-5 w-5 hover:text-primary-glow cursor-pointer transition-colors" />
+            <Instagram className="h-5 w-5 hover:text-primary-foreground/70 cursor-pointer transition-colors" />
+            <Facebook className="h-5 w-5 hover:text-primary-foreground/70 cursor-pointer transition-colors" />
           </div>
           <p className="text-sm text-primary-foreground/60">
             © 2024 Party Favor Photo. All rights reserved.

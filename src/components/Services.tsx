@@ -60,20 +60,20 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h2>
+          <h2 className="text-4xl font-bold mb-4 text-foreground">Our Services</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Professional photo booth experiences tailored to make your event unforgettable
+            Professional photo booth packages designed for every occasion
           </p>
         </div>
 
         {/* Services Grid */}
         <div className="grid lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="bg-card rounded-2xl overflow-hidden shadow-party hover:shadow-glow transition-all duration-300 hover:scale-105">
+            <div key={index} className="bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-shadow duration-300">
               {/* Service Image */}
               <div className="relative h-64 overflow-hidden">
                 <img 
@@ -81,7 +81,7 @@ const Services = () => {
                   alt={service.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-4 right-4 bg-gradient-party text-white px-3 py-1 rounded-full text-sm font-bold">
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-md text-sm font-medium">
                   {service.price}
                 </div>
               </div>
@@ -110,7 +110,7 @@ const Services = () => {
                 </div>
                 
                 {/* CTA Button */}
-                <Button variant="party" className="w-full">
+                <Button className="w-full">
                   Book This Service
                 </Button>
               </div>
@@ -119,18 +119,18 @@ const Services = () => {
         </div>
 
         {/* Additional Services Note */}
-        <div className="text-center mt-16 bg-gradient-party/10 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold mb-4">Serving Multiple Markets</h3>
+        <div className="text-center mt-16 bg-card border rounded-lg p-8">
+          <h3 className="text-2xl font-bold mb-4 text-foreground">Serving Multiple Markets</h3>
           <p className="text-lg text-muted-foreground mb-6">
-            We're proud to serve Washington D.C., Maryland, Virginia, and expanding to Colorado, Texas, and Florida!
+            We're proud to serve Washington D.C., Maryland, Virginia, and expanding to Colorado, Texas, and Florida.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button variant="outline">Washington D.C.</Button>
-            <Button variant="outline">Maryland</Button>
-            <Button variant="outline">Virginia</Button>
-            <Button variant="outline">Colorado</Button>
-            <Button variant="outline">Texas</Button>
-            <Button variant="outline">Florida</Button>
+          <div className="flex flex-wrap justify-center gap-3">
+            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Washington D.C.</span>
+            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Maryland</span>
+            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Virginia</span>
+            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Colorado</span>
+            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Texas</span>
+            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Florida</span>
           </div>
         </div>
       </div>

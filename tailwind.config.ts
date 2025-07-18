@@ -26,17 +26,11 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))',
-					glow: 'hsl(var(--primary-glow))'
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
-				},
-				party: {
-					red: 'hsl(var(--party-red))',
-					orange: 'hsl(var(--party-orange))',
-					blue: 'hsl(var(--party-blue))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -73,15 +67,6 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
-			},
-			backgroundImage: {
-				'gradient-party': 'var(--gradient-party)',
-				'gradient-hero': 'var(--gradient-hero)',
-				'gradient-overlay': 'var(--gradient-overlay)'
-			},
-			boxShadow: {
-				'party': 'var(--shadow-party)',
-				'glow': 'var(--shadow-glow)'
 			},
 			keyframes: {
 				'accordion-down': {
