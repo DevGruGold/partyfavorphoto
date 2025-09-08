@@ -57,14 +57,21 @@ const Hero = () => {
               className="h-8 object-contain"
             />
             <div className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
+              <a href="tel:+12027980610" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Phone className="h-4 w-4" />
                 <span>(202) 798-0610</span>
-              </div>
-              <div className="flex items-center gap-2">
+              </a>
+              <a href="mailto:info@partyfavorphoto.com" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Mail className="h-4 w-4" />
                 <span>info@partyfavorphoto.com</span>
-              </div>
+              </a>
+              <Button 
+                size="sm" 
+                className="bg-green-600 hover:bg-green-700 text-white"
+                onClick={() => window.open('https://wa.me/50661500559?text=Hi!%20I%27m%20interested%20in%20your%20photo%20booth%20services.', '_blank')}
+              >
+                WhatsApp
+              </Button>
             </div>
           </div>
         </div>
@@ -102,9 +109,9 @@ const Hero = () => {
                               <Button size="lg" className="px-8 py-4 text-lg">
                                 {slide.cta}
                               </Button>
-                              <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-white/30 text-white hover:bg-white/10">
-                                View Our Work
-                              </Button>
+                          <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-black transition-all">
+                            View Our Work
+                          </Button>
                             </div>
                           </>
                         ) : (
@@ -140,8 +147,8 @@ const Hero = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-4 text-white border-white/30 hover:bg-white/10" />
-          <CarouselNext className="right-4 text-white border-white/30 hover:bg-white/10" />
+          <CarouselPrevious className="left-4 text-white border-white bg-black/20 hover:bg-white hover:text-black transition-all" />
+          <CarouselNext className="right-4 text-white border-white bg-black/20 hover:bg-white hover:text-black transition-all" />
         </Carousel>
       </div>
     </section>
