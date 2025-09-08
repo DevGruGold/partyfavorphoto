@@ -72,13 +72,12 @@ const Hero = () => {
             
             {/* Contact Actions - Mobile optimized */}
             <div className="flex items-center gap-3">
-              {/* Phone - Show icon only on mobile */}
+              {/* Phone Number - Always visible and clickable */}
               <a 
                 href="tel:+12027980610" 
-                className="flex items-center gap-2 hover:text-primary transition-colors font-inter text-muted-foreground"
+                className="flex items-center gap-2 hover:text-primary transition-colors font-inter text-muted-foreground font-medium"
               >
-                <Phone className="h-4 w-4" />
-                <span className="hidden md:inline text-sm">(202) 798-0610</span>
+                <span className="text-sm md:text-base">(202) 798-0610</span>
               </a>
             </div>
           </div>
