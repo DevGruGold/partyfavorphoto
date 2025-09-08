@@ -22,26 +22,16 @@ const BookingCart = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const photoOptions = [
-    {
-      id: 'standard',
-      type: 'standard' as const,
-      name: 'Unlimited 2x6 Standard Photo Strips',
-      basePrice: 45,
-      description: 'Classic photo strips with unlimited prints'
-    },
-    {
-      id: 'premium', 
-      type: 'premium' as const,
-      name: 'Unlimited 4x6 Premium Photo Prints',
-      basePrice: 65,
-      description: 'High-quality 4x6 prints with unlimited photos'
-    }
+  const studioStationPricing = [
+    { hours: 2, price: 498, totalHours: 3 }, // includes 1hr setup
+    { hours: 3, price: 747, totalHours: 4 },
+    { hours: 4, price: 996, totalHours: 5 },
+    { hours: 5, price: 1245, totalHours: 6 }
   ];
 
-  const addToCart = (option: typeof photoOptions[0], hours: number) => {
+  const addToCart = (pricing: typeof studioStationPricing[0]) => {
     const existingItem = cartItems.find(item => 
-      item.type === option.type && item.hours === hours
+      item.hours === pricing.hours
     );
 
     if (existingItem) {
@@ -52,11 +42,11 @@ const BookingCart = () => {
       ));
     } else {
       const newItem: CartItem = {
-        id: `${option.type}-${hours}-${Date.now()}`,
-        type: option.type,
-        name: `${option.name} (${hours}h)`,
-        price: option.basePrice * hours,
-        hours,
+        id: `studiobooth-${pricing.hours}h-${Date.now()}`,
+        type: 'standard',
+        name: `StudioStation Photo Booth (${pricing.hours}h service + 1h setup)`,
+        price: pricing.price,
+        hours: pricing.hours,
         quantity: 1
       };
       setCartItems([...cartItems, newItem]);
@@ -104,24 +94,24 @@ const BookingCart = () => {
       'Please confirm availability and provide final details. Thank you!'
     ].join('\n');
 
-    const whatsappUrl = `https://wa.me/50661500559?text=${encodeURIComponent(orderDetails)}`;
+    const whatsappUrl = `https://wa.me/12027980610?text=${encodeURIComponent(orderDetails)}`;
     window.open(whatsappUrl, '_blank');
   };
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-8 md:py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-5xl font-bold mb-4 font-playfair">Book Your Photo Booth</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
-            Select your date, choose your photo package, and book instantly via WhatsApp
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-playfair">Book Your StudioStation</h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
+            Select your date, choose your package, and book instantly via WhatsApp
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {/* Date Selection */}
-          <Card className="p-6">
-            <h3 className="text-2xl font-bold mb-4 font-playfair">Select Your Date</h3>
+          <Card className="p-4 md:p-6">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 font-playfair">Select Your Date</h3>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -147,32 +137,29 @@ const BookingCart = () => {
               </PopoverContent>
             </Popover>
 
-            {/* Photo Options */}
-            <div className="mt-8">
-              <h4 className="text-lg font-semibold mb-4 font-playfair">Choose Your Package</h4>
-              <div className="space-y-4">
-                {photoOptions.map((option) => (
-                  <div key={option.id} className="border rounded-lg p-4">
-                    <div className="flex justify-between items-start mb-3">
+            {/* StudioStation Packages */}
+            <div className="mt-6 md:mt-8">
+              <h4 className="text-lg font-semibold mb-4 font-playfair">StudioStation Packages</h4>
+              <div className="space-y-3">
+                {studioStationPricing.map((pricing) => (
+                  <div key={pricing.hours} className="border rounded-lg p-4 hover:bg-muted/30 transition-colors">
+                    <div className="flex justify-between items-center mb-3">
                       <div>
-                        <h5 className="font-semibold text-lg font-inter">{option.name}</h5>
-                        <p className="text-muted-foreground text-sm font-inter font-light">{option.description}</p>
-                        <p className="text-primary font-semibold font-inter">${option.basePrice}/hour</p>
+                        <h5 className="font-semibold text-base md:text-lg font-inter">
+                          {pricing.hours} Hour Service ({pricing.totalHours}h total)
+                        </h5>
+                        <p className="text-muted-foreground text-sm font-inter font-light">
+                          Includes 1hr setup, DSLR camera, backdrops, props & printing
+                        </p>
+                        <p className="text-primary font-bold text-lg font-inter">${pricing.price}</p>
                       </div>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {[2, 3, 4, 5, 6, 8].map((hours) => (
-                        <Button
-                          key={hours}
-                          size="sm"
-                          variant="outline"
-                          onClick={() => addToCart(option, hours)}
-                          className="text-xs"
-                        >
-                          {hours}h - ${(option.basePrice * hours).toFixed(0)}
-                        </Button>
-                      ))}
+                      <Button
+                        size="sm"
+                        onClick={() => addToCart(pricing)}
+                        className="flex-shrink-0 ml-2"
+                      >
+                        Add to Cart
+                      </Button>
                     </div>
                   </div>
                 ))}

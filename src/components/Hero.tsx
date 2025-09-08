@@ -20,9 +20,9 @@ const Hero = () => {
       title: "StudioStation Photo Booth",
       subtitle: "Our flagship service",
       price: "From $498",
-      duration: "2-3 hours",
+      duration: "2-5 hours",
       image: studioStationImage,
-      description: "Professional DSLR camera with glamorous sequin backdrops and unlimited custom prints",
+      description: "Professional DSLR camera with glamorous sequin backdrops, goofy props, QR code sharing and unlimited custom prints",
       cta: "Book StudioStation"
     },
     {
@@ -56,19 +56,19 @@ const Hero = () => {
               alt="Party Favor Photo" 
               className="h-12 object-contain"
             />
-            <div className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="tel:+12027980610" className="flex items-center gap-2 hover:text-primary transition-colors font-inter">
-                <Phone className="h-4 w-4" />
-                <span>(202) 798-0610</span>
+            <div className="flex items-center gap-3 md:gap-6 text-xs md:text-sm text-muted-foreground">
+              <a href="tel:+12027980610" className="flex items-center gap-1 md:gap-2 hover:text-primary transition-colors font-inter">
+                <Phone className="h-3 w-3 md:h-4 md:w-4" />
+                <span className="hidden sm:inline">(202) 798-0610</span>
               </a>
-              <a href="mailto:info@partyfavorphoto.com" className="flex items-center gap-2 hover:text-primary transition-colors font-inter">
+              <a href="mailto:info@partyfavorphoto.com" className="hidden md:flex items-center gap-2 hover:text-primary transition-colors font-inter">
                 <Mail className="h-4 w-4" />
                 <span>info@partyfavorphoto.com</span>
               </a>
               <Button 
                 size="sm" 
-                className="bg-green-600 hover:bg-green-700 text-white font-inter font-medium"
-                onClick={() => window.open('https://wa.me/50661500559?text=Hi!%20I%27m%20interested%20in%20your%20photo%20booth%20services.', '_blank')}
+                className="bg-green-600 hover:bg-green-700 text-white font-inter font-medium text-xs md:text-sm px-2 md:px-4"
+                onClick={() => window.open('https://wa.me/12027980610?text=Hi!%20I%27m%20interested%20in%20your%20photo%20booth%20services.', '_blank')}
               >
                 WhatsApp
               </Button>
@@ -78,7 +78,7 @@ const Hero = () => {
       </header>
 
       {/* Photo-Forward Hero Carousel */}
-      <div className="relative h-screen">
+      <div className="relative h-screen min-h-[600px]">
         <Carousel className="h-full">
           <CarouselContent className="h-full">
             {heroSlides.map((slide, index) => (
@@ -99,20 +99,20 @@ const Hero = () => {
                       <div className="max-w-2xl text-white">
                         {slide.isHero ? (
                           <>
-                            <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight font-playfair">
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 leading-tight font-playfair">
                               {slide.title}
                             </h1>
-                            <p className="text-xl md:text-2xl mb-8 opacity-90 font-inter font-light">
+                            <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 opacity-90 font-inter font-light">
                               {slide.subtitle}
                             </p>
-                            <div className="flex flex-col sm:flex-row gap-4">
-                              <Button size="lg" className="px-8 py-4 text-lg font-inter font-semibold">
+                            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+                              <Button size="lg" className="px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-inter font-semibold">
                                 {slide.cta}
                               </Button>
                               <Button 
                                 variant="outline" 
                                 size="lg" 
-                                className="px-8 py-4 text-lg border-2 border-white text-white bg-black/20 hover:bg-white hover:text-black transition-all font-inter font-semibold backdrop-blur-sm"
+                                className="px-6 md:px-8 py-3 md:py-4 text-base md:text-lg border-2 border-white text-white bg-white/10 hover:bg-white hover:text-primary transition-all font-inter font-semibold backdrop-blur-sm"
                               >
                                 View Our Work
                               </Button>
@@ -121,17 +121,17 @@ const Hero = () => {
                         ) : (
                           <>
                             <div className="mb-4">
-                              <p className="text-sm uppercase tracking-wide font-semibold opacity-90 mb-2 font-inter">
+                              <p className="text-xs sm:text-sm uppercase tracking-wide font-semibold opacity-90 mb-2 font-inter">
                                 {slide.subtitle}
                               </p>
-                              <h2 className="text-4xl md:text-6xl font-bold mb-4 font-playfair">
+                              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 font-playfair">
                                 {slide.title}
                               </h2>
-                              <p className="text-lg md:text-xl mb-6 opacity-90 font-inter font-light">
+                              <p className="text-base sm:text-lg md:text-xl mb-4 md:mb-6 opacity-90 font-inter font-light">
                                 {slide.description}
                               </p>
-                              <div className="flex items-center gap-6 mb-6 text-sm">
-                                <span className="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm font-inter font-semibold">
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 mb-4 md:mb-6 text-sm">
+                                <span className="bg-white/20 px-3 md:px-4 py-2 rounded-full backdrop-blur-sm font-inter font-semibold inline-block w-fit">
                                   {slide.price}
                                 </span>
                                 <span className="opacity-90 font-inter">
@@ -139,7 +139,7 @@ const Hero = () => {
                                 </span>
                               </div>
                             </div>
-                            <Button size="lg" className="px-8 py-4 font-inter font-semibold">
+                            <Button size="lg" className="px-6 md:px-8 py-3 md:py-4 font-inter font-semibold">
                               {slide.cta}
                             </Button>
                           </>

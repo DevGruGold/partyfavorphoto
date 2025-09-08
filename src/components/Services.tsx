@@ -11,7 +11,7 @@ const Services = () => {
       subtitle: "Our flagship service",
       image: studioStationImage,
       price: "From $498",
-      duration: "2-3 hours",
+      duration: "2-5 hours",
       features: [
         "Professional DSLR camera",
         "Glamorous sequin backdrops",
@@ -19,7 +19,8 @@ const Services = () => {
         "Unlimited custom prints",
         "QR code sharing",
         "Professional attendant",
-        "Goofy props included"
+        "Goofy props included",
+        "1 hour free setup included"
       ],
       description: "Our elegant ballroom service with real DSLR camera, popping strobe flash, and unlimited custom prints will be the highlight of your party!"
     },
@@ -60,18 +61,18 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-12 md:py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-4 text-foreground font-playfair">Service Details</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground font-playfair">Service Details</h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
             Complete information about our professional photo booth packages
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div key={index} className="bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-shadow duration-300">
               {/* Service Image */}
@@ -112,7 +113,7 @@ const Services = () => {
                 {/* CTA Button */}
                 <Button 
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-                  onClick={() => window.open('https://wa.me/50661500559?text=Hi!%20Please%20send%20me%20more%20information%20about%20' + encodeURIComponent(service.title), '_blank')}
+                  onClick={() => window.open('https://wa.me/12027980610?text=Hi!%20Please%20send%20me%20more%20information%20about%20' + encodeURIComponent(service.title), '_blank')}
                 >
                   Request Quote via WhatsApp
                 </Button>
@@ -122,18 +123,18 @@ const Services = () => {
         </div>
 
         {/* Additional Services Note */}
-        <div className="text-center mt-16 bg-card border rounded-lg p-8">
-          <h3 className="text-2xl font-bold mb-4 text-foreground">Serving Multiple Markets</h3>
-          <p className="text-lg text-muted-foreground mb-6">
+        <div className="text-center mt-12 md:mt-16 bg-card border rounded-lg p-6 md:p-8">
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-foreground">Serving Multiple Markets</h3>
+          <p className="text-base md:text-lg text-muted-foreground mb-6">
             We're proud to serve Washington D.C., Maryland, Virginia, and expanding to Colorado, Texas, and Florida.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Washington D.C.</span>
-            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Maryland</span>
-            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Virginia</span>
-            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Colorado</span>
-            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Texas</span>
-            <span className="px-4 py-2 bg-muted text-muted-foreground rounded-md text-sm">Florida</span>
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+            <span className="px-3 md:px-4 py-2 bg-muted text-muted-foreground rounded-md text-xs md:text-sm">Washington D.C.</span>
+            <span className="px-3 md:px-4 py-2 bg-muted text-muted-foreground rounded-md text-xs md:text-sm">Maryland</span>
+            <span className="px-3 md:px-4 py-2 bg-muted text-muted-foreground rounded-md text-xs md:text-sm">Virginia</span>
+            <span className="px-3 md:px-4 py-2 bg-muted text-muted-foreground rounded-md text-xs md:text-sm">Colorado</span>
+            <span className="px-3 md:px-4 py-2 bg-muted text-muted-foreground rounded-md text-xs md:text-sm">Texas</span>
+            <span className="px-3 md:px-4 py-2 bg-muted text-muted-foreground rounded-md text-xs md:text-sm">Florida</span>
           </div>
         </div>
       </div>
