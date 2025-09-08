@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
@@ -211,38 +210,31 @@ const BookingCart = () => {
                 <CalendarIcon className="h-5 w-5 text-primary" />
                 Select Event Date
               </h3>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className={cn(
-                      "w-full justify-start text-left font-normal h-11 smooth-transition",
-                      !date && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "EEEE, MMMM do, yyyy") : <span>Choose your event date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={(newDate) => {
-                      setDate(newDate);
-                      if (newDate) {
-                        toast({
-                          title: "Date Selected",
-                          description: format(newDate, "EEEE, MMMM do, yyyy"),
-                        });
-                      }
-                    }}
-                    disabled={(date) => date < new Date()}
-                    initialFocus
-                    className={cn("p-3 pointer-events-auto")}
-                  />
-                </PopoverContent>
-              </Popover>
+              <div className="relative">
+                <Input
+                  type="date"
+                  value={date ? format(date, 'yyyy-MM-dd') : ''}
+                  onChange={(e) => {
+                    const newDate = e.target.value ? new Date(e.target.value + 'T12:00:00') : undefined;
+                    setDate(newDate);
+                    if (newDate) {
+                      toast({
+                        title: "Date Selected",
+                        description: format(newDate, "EEEE, MMMM do, yyyy"),
+                      });
+                    }
+                  }}
+                  min={format(new Date(), 'yyyy-MM-dd')}
+                  className="w-full h-11 cursor-pointer hover:bg-accent/50 transition-colors pl-10"
+                  placeholder="Choose your event date"
+                />
+                <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+              </div>
+              {date && (
+                <p className="text-sm text-muted-foreground bg-muted/30 rounded-md p-2">
+                  Selected: {format(date, "EEEE, MMMM do, yyyy")}
+                </p>
+              )}
             </div>
 
             <Separator />
