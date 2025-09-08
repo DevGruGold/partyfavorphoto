@@ -61,12 +61,14 @@ const Hero = () => {
       <header className="bg-white/98 backdrop-blur-sm border-b border-border/20 relative z-50 shadow-lg">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            {/* Logo - Better mobile sizing */}
-            <img 
-              src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png"
-              alt="Party Favor Photo" 
-              className="h-10 sm:h-12 md:h-14 lg:h-16 object-contain"
-            />
+            {/* Logo - Centered and doubled in size */}
+            <div className="flex-1 flex justify-center">
+              <img 
+                src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png"
+                alt="Party Favor Photo" 
+                className="h-20 sm:h-24 md:h-28 lg:h-32 object-contain"
+              />
+            </div>
             
             {/* Contact Actions - Mobile optimized */}
             <div className="flex items-center gap-3">
@@ -78,16 +80,6 @@ const Hero = () => {
                 <Phone className="h-4 w-4" />
                 <span className="hidden md:inline text-sm">(202) 798-0610</span>
               </a>
-              
-              {/* WhatsApp Button - Better mobile styling */}
-              <Button 
-                size="sm" 
-                className="bg-green-600 hover:bg-green-700 text-white font-inter font-medium px-3 py-2 text-sm shadow-md hover:shadow-lg transition-all"
-                onClick={() => window.open('https://wa.me/50661500559?text=Hi!%20I%27m%20interested%20in%20your%20photo%20booth%20services.', '_blank')}
-              >
-                <span className="hidden sm:inline">WhatsApp</span>
-                <span className="sm:hidden">Chat</span>
-              </Button>
             </div>
           </div>
         </div>
