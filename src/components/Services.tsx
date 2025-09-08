@@ -29,7 +29,7 @@ const Services = () => {
       title: "Wedding Packages",
       subtitle: "Make your special day unforgettable",
       image: weddingBoothImage,
-      price: "Custom pricing",
+      price: "From $998",
       duration: "4-6 hours",
       features: [
         "Custom wedding backdrops",
