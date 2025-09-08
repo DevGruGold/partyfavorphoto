@@ -72,18 +72,18 @@ const Hero = () => {
             <div className="flex items-center gap-3">
               {/* Phone - Show icon only on mobile */}
               <a 
-                href="tel:+12027980610" 
+                href="tel:+50661500559" 
                 className="flex items-center gap-2 hover:text-primary transition-colors font-inter text-muted-foreground"
               >
                 <Phone className="h-4 w-4" />
-                <span className="hidden md:inline text-sm">(202) 798-0610</span>
+                <span className="hidden md:inline text-sm">+506 6150-0559</span>
               </a>
               
               {/* WhatsApp Button - Better mobile styling */}
               <Button 
                 size="sm" 
                 className="bg-green-600 hover:bg-green-700 text-white font-inter font-medium px-3 py-2 text-sm shadow-md hover:shadow-lg transition-all"
-                onClick={() => window.open('https://wa.me/12027980610?text=Hi!%20I%27m%20interested%20in%20your%20photo%20booth%20services.', '_blank')}
+                onClick={() => window.open('https://wa.me/50661500559?text=Hi!%20I%27m%20interested%20in%20your%20photo%20booth%20services.', '_blank')}
               >
                 <span className="hidden sm:inline">WhatsApp</span>
                 <span className="sm:hidden">Chat</span>

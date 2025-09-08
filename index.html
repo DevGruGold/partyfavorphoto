@@ -30,28 +30,16 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Zapier Chatbot -->
+    <!-- ChatGPT Custom Bot -->
     <script>
       window.addEventListener('load', function() {
-        const chatFrame = document.createElement('iframe');
-        chatFrame.src = 'https://partyfavorphoto.zapier.app/';
-        chatFrame.style.cssText = 'position: fixed; bottom: 20px; right: 20px; width: 400px; height: 600px; border: none; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.15); z-index: 9999; display: none;';
-        chatFrame.id = 'zapier-chat';
-        
         const chatButton = document.createElement('button');
         chatButton.innerHTML = '💬 Ask Our AI';
         chatButton.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #2563eb; color: white; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-family: Inter, sans-serif; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(37,99,235,0.3); z-index: 10000; transition: all 0.2s ease;';
         chatButton.id = 'chat-toggle';
         
         chatButton.addEventListener('click', function() {
-          const frame = document.getElementById('zapier-chat');
-          if (frame.style.display === 'none') {
-            frame.style.display = 'block';
-            chatButton.innerHTML = '✕ Close';
-          } else {
-            frame.style.display = 'none';
-            chatButton.innerHTML = '💬 Ask Our AI';
-          }
+          window.open('https://chatgpt.com/g/g-NVgyoacEM-party-favor-pro', '_blank');
         });
         
         chatButton.addEventListener('mouseover', function() {
@@ -64,28 +52,7 @@
           this.style.boxShadow = '0 4px 12px rgba(37,99,235,0.3)';
         });
         
-        document.body.appendChild(chatFrame);
         document.body.appendChild(chatButton);
-        
-        // Mobile responsive adjustments
-        function adjustChatForMobile() {
-          if (window.innerWidth <= 640) {
-            chatFrame.style.width = '95vw';
-            chatFrame.style.height = '80vh';
-            chatFrame.style.bottom = '10px';
-            chatFrame.style.right = '2.5vw';
-            chatButton.style.right = '20px';
-            chatButton.style.bottom = '20px';
-          } else {
-            chatFrame.style.width = '400px';
-            chatFrame.style.height = '600px';
-            chatFrame.style.bottom = '20px';
-            chatFrame.style.right = '20px';
-          }
-        }
-        
-        window.addEventListener('resize', adjustChatForMobile);
-        adjustChatForMobile();
       });
     </script>
   </body>
