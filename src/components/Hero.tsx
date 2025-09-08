@@ -101,7 +101,7 @@ const Hero = () => {
                     />
                     
                     {/* Mobile-First Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 md:bg-gradient-to-r md:from-black/80 md:via-black/60 md:to-black/20" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 md:bg-gradient-to-r md:from-black/50 md:via-black/30 md:to-black/10" />
                     
                     {/* Content Overlay - Fills full screen */}
                     <div className="absolute inset-0 flex flex-col justify-center items-center md:justify-center md:items-start px-5 py-12">
