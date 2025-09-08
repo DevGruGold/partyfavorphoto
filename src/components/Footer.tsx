@@ -3,7 +3,7 @@ import partyFavorLogo from "@/assets/party-favor-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground py-16">
+    <footer className="bg-secondary text-secondary-foreground py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo and Company Info */}
@@ -13,10 +13,10 @@ const Footer = () => {
               alt="Party Favor Photo" 
               className="h-12 mb-4"
             />
-            <p className="mb-4 text-primary-foreground/80 max-w-md">
+            <p className="mb-4 text-secondary-foreground/80 max-w-md">
               Professional photo booth services bringing memorable experiences to events across the Washington D.C. metro area.
             </p>
-            <p className="text-sm text-primary-foreground/60">
+            <p className="text-sm text-secondary-foreground/60">
               Established in Arlington, Virginia
             </p>
           </div>
@@ -39,7 +39,7 @@ const Footer = () => {
           {/* Service Areas */}
           <div>
             <h3 className="font-bold text-lg mb-4">Service Areas</h3>
-            <ul className="space-y-2 text-primary-foreground/80">
+            <ul className="space-y-2 text-secondary-foreground/80">
               <li>Washington D.C.</li>
               <li>Arlington, VA</li>
               <li>Bethesda, MD</li>
@@ -51,12 +51,12 @@ const Footer = () => {
         </div>
         
         {/* Social Media and Copyright */}
-        <div className="border-t border-primary-foreground/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-secondary-foreground/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-4 mb-4 md:mb-0">
-            <Instagram className="h-5 w-5 hover:text-primary-foreground/70 cursor-pointer transition-colors" />
-            <Facebook className="h-5 w-5 hover:text-primary-foreground/70 cursor-pointer transition-colors" />
+            <Instagram className="h-5 w-5 hover:text-secondary-foreground/70 cursor-pointer transition-colors" />
+            <Facebook className="h-5 w-5 hover:text-secondary-foreground/70 cursor-pointer transition-colors" />
           </div>
-          <p className="text-sm text-primary-foreground/60">
+          <p className="text-sm text-secondary-foreground/60">
             © 2024 Party Favor Photo. All rights reserved.
           </p>
         </div>
