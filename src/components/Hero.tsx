@@ -93,40 +93,40 @@ const Hero = () => {
         </div>
       </header>
 
-      {/* Mobile-First Hero Carousel */}
-      <div className="relative h-screen min-h-[600px]">
+      {/* Full-Screen Mobile Hero */}
+      <div className="relative min-h-screen">
         <Carousel className="h-full">
           <CarouselContent className="h-full">
             {heroSlides.map((slide, index) => (
-              <CarouselItem key={index} className="h-full relative">
-                <div className="relative h-full">
-                  {/* Background Image */}
-                  <img 
-                    src={slide.image} 
-                    alt={slide.title}
-                    className="w-full h-full object-cover"
-                  />
-                  
-                  {/* Mobile-First Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70 md:bg-gradient-to-r md:from-black/80 md:via-black/60 md:to-black/20" />
-                  
-                  {/* Content Overlay - Mobile optimized */}
-                  <div className="absolute inset-0 flex items-center justify-center md:justify-start">
-                    <div className="container mx-auto px-5 py-8">
-                      <div className="max-w-lg sm:max-w-xl md:max-w-2xl text-white text-center md:text-left">
+              <CarouselItem key={index} className="relative min-h-screen">
+                <div className="relative min-h-screen flex flex-col">
+                  {/* Background Image - Takes full screen */}
+                  <div className="relative flex-1 min-h-screen">
+                    <img 
+                      src={slide.image} 
+                      alt={slide.title}
+                      className="w-full h-full object-cover absolute inset-0"
+                    />
+                    
+                    {/* Mobile-First Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 md:bg-gradient-to-r md:from-black/80 md:via-black/60 md:to-black/20" />
+                    
+                    {/* Content Overlay - Fills full screen */}
+                    <div className="absolute inset-0 flex flex-col justify-center items-center md:justify-center md:items-start px-5 py-12">
+                      <div className="max-w-lg sm:max-w-xl md:max-w-2xl text-white text-center md:text-left md:ml-8 lg:ml-12">
                         {slide.isHero ? (
                           <>
-                            {/* Hero Content */}
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight font-playfair">
+                            {/* Hero Content - Larger for mobile */}
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-playfair">
                               {slide.title}
                             </h1>
-                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 opacity-95 font-inter font-light leading-relaxed max-w-lg mx-auto md:mx-0">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 opacity-95 font-inter font-light leading-relaxed">
                               {slide.subtitle}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto md:mx-0">
                               <Button 
                                 size="lg" 
-                                className="px-6 py-3 text-base font-inter font-semibold bg-primary hover:bg-primary-elegant shadow-button hover:shadow-xl transition-all transform hover:-translate-y-1"
+                                className="px-8 py-4 text-lg font-inter font-semibold bg-primary hover:bg-primary-elegant shadow-button hover:shadow-xl transition-all transform hover:-translate-y-1"
                                 onClick={() => scrollToSection('booking')}
                               >
                                 {slide.cta}
@@ -134,7 +134,7 @@ const Hero = () => {
                               <Button 
                                 variant="outline" 
                                 size="lg" 
-                                className="px-6 py-3 text-base border-2 border-white/80 text-white bg-white/10 hover:bg-white hover:text-primary transition-all font-inter font-semibold backdrop-blur-md"
+                                className="px-8 py-4 text-lg border-2 border-white/80 text-white bg-white/10 hover:bg-white hover:text-primary transition-all font-inter font-semibold backdrop-blur-md"
                                 onClick={() => scrollToSection('services')}
                               >
                                 View Our Work
@@ -143,24 +143,24 @@ const Hero = () => {
                           </>
                         ) : (
                           <>
-                            {/* Service Slides Content */}
-                            <div className="mb-6">
-                              <p className="text-sm uppercase tracking-wide font-semibold opacity-90 mb-3 font-inter text-primary-glow">
+                            {/* Service Slides Content - Larger for mobile */}
+                            <div className="mb-8">
+                              <p className="text-base uppercase tracking-wide font-semibold opacity-90 mb-4 font-inter text-primary-glow">
                                 {slide.subtitle}
                               </p>
-                              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-playfair leading-tight">
+                              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-playfair leading-tight">
                                 {slide.title}
                               </h2>
-                              <p className="text-sm sm:text-base md:text-lg mb-5 opacity-95 font-inter font-light leading-relaxed max-w-md mx-auto md:mx-0">
+                              <p className="text-base sm:text-lg md:text-xl mb-8 opacity-95 font-inter font-light leading-relaxed">
                                 {slide.description}
                               </p>
                               
-                              {/* Pricing Info */}
-                              <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6 justify-center md:justify-start">
-                                <span className="bg-primary/20 border border-primary/40 px-4 py-2 rounded-full backdrop-blur-sm font-inter font-semibold text-primary-glow">
+                              {/* Pricing Info - Larger for mobile */}
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 justify-center md:justify-start">
+                                <span className="bg-primary/20 border border-primary/40 px-6 py-3 rounded-full backdrop-blur-sm font-inter font-semibold text-primary-glow text-lg">
                                   {slide.price}
                                 </span>
-                                <span className="opacity-90 font-inter text-sm">
+                                <span className="opacity-90 font-inter text-base">
                                   Duration: {slide.duration}
                                 </span>
                               </div>
@@ -168,7 +168,7 @@ const Hero = () => {
                             
                             <Button 
                               size="lg" 
-                              className="px-6 py-3 font-inter font-semibold text-base bg-primary hover:bg-primary-elegant shadow-button hover:shadow-xl transition-all transform hover:-translate-y-1 mx-auto md:mx-0"
+                              className="px-8 py-4 font-inter font-semibold text-lg bg-primary hover:bg-primary-elegant shadow-button hover:shadow-xl transition-all transform hover:-translate-y-1"
                               onClick={() => scrollToSection('booking')}
                             >
                               {slide.cta}
@@ -183,9 +183,9 @@ const Hero = () => {
             ))}
           </CarouselContent>
           
-          {/* Mobile-friendly navigation */}
-          <CarouselPrevious className="left-3 text-white border-white/50 bg-black/40 hover:bg-white hover:text-primary transition-all h-10 w-10 backdrop-blur-sm" />
-          <CarouselNext className="right-3 text-white border-white/50 bg-black/40 hover:bg-white hover:text-primary transition-all h-10 w-10 backdrop-blur-sm" />
+          {/* Mobile-friendly navigation - Positioned for full screen */}
+          <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 text-white border-white/50 bg-black/40 hover:bg-white hover:text-primary transition-all h-12 w-12 backdrop-blur-sm" />
+          <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 text-white border-white/50 bg-black/40 hover:bg-white hover:text-primary transition-all h-12 w-12 backdrop-blur-sm" />
         </Carousel>
       </div>
     </section>
