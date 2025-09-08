@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
-import { CalendarIcon, Plus, Minus, ShoppingCart, Trash2 } from "lucide-react";
+import { Slider } from "@/components/ui/slider";
+import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/hooks/use-toast";
+import { 
+  CalendarIcon, 
+  Plus, 
+  Minus, 
+  ShoppingCart, 
+  Trash2, 
+  Clock,
+  CheckCircle,
+  Star,
+  Zap,
+  ChevronDown,
+  ChevronUp
+} from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
@@ -12,244 +27,426 @@ interface CartItem {
   id: string;
   type: 'standard' | 'premium';
   name: string;
-  price: number;
+  basePrice: number;
   hours: number;
   quantity: number;
+  totalPrice: number;
 }
 
 const BookingCart = () => {
   const [date, setDate] = useState<Date>();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(true);
+  const [selectedHours, setSelectedHours] = useState(2);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const studioStationPricing = [
-    { hours: 2, price: 498, totalHours: 3 }, // includes 1hr setup
-    { hours: 3, price: 747, totalHours: 4 },
-    { hours: 4, price: 996, totalHours: 5 },
-    { hours: 5, price: 1245, totalHours: 6 }
-  ];
+  // Base pricing structure
+  const BASE_RATE = 199; // Base rate for 1st hour + setup
+  const HOURLY_RATE = 149; // Each additional hour
 
-  const addToCart = (pricing: typeof studioStationPricing[0]) => {
-    const existingItem = cartItems.find(item => 
-      item.hours === pricing.hours
-    );
+  // Calculate price based on hours
+  const calculatePrice = (hours: number) => {
+    if (hours <= 1) return BASE_RATE;
+    return BASE_RATE + (hours - 1) * HOURLY_RATE;
+  };
+
+  // Get current price for selected hours
+  const currentPrice = calculatePrice(selectedHours);
+
+  const addToCart = () => {
+    if (selectedHours < 2) {
+      toast({
+        title: "Invalid Selection",
+        description: "Minimum booking is 2 hours",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const existingItem = cartItems.find(item => item.hours === selectedHours);
 
     if (existingItem) {
       setCartItems(cartItems.map(item =>
         item.id === existingItem.id 
-          ? { ...item, quantity: item.quantity + 1 }
+          ? { ...item, quantity: item.quantity + 1, totalPrice: item.basePrice * (item.quantity + 1) }
           : item
       ));
+      toast({
+        title: "Updated Cart",
+        description: `Increased quantity for ${selectedHours}h service`,
+      });
     } else {
       const newItem: CartItem = {
-        id: `studiobooth-${pricing.hours}h-${Date.now()}`,
+        id: `studiobooth-${selectedHours}h-${Date.now()}`,
         type: 'standard',
-        name: `StudioStation Photo Booth (${pricing.hours}h service + 1h setup)`,
-        price: pricing.price,
-        hours: pricing.hours,
-        quantity: 1
+        name: `StudioStation Photo Booth - ${selectedHours} Hours`,
+        basePrice: currentPrice,
+        hours: selectedHours,
+        quantity: 1,
+        totalPrice: currentPrice
       };
       setCartItems([...cartItems, newItem]);
+      toast({
+        title: "Added to Cart",
+        description: `${selectedHours}h StudioStation service added`,
+      });
     }
   };
 
   const removeFromCart = (itemId: string) => {
+    const item = cartItems.find(i => i.id === itemId);
     setCartItems(cartItems.filter(item => item.id !== itemId));
+    toast({
+      title: "Removed from Cart",
+      description: `${item?.name} removed`,
+    });
   };
 
   const updateQuantity = (itemId: string, change: number) => {
     setCartItems(cartItems.map(item => {
       if (item.id === itemId) {
         const newQuantity = Math.max(0, item.quantity + change);
-        return newQuantity === 0 ? null : { ...item, quantity: newQuantity };
+        if (newQuantity === 0) {
+          toast({
+            title: "Removed from Cart",
+            description: `${item.name} removed`,
+          });
+          return null;
+        }
+        return { 
+          ...item, 
+          quantity: newQuantity,
+          totalPrice: item.basePrice * newQuantity
+        };
       }
       return item;
     }).filter(Boolean) as CartItem[]);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+    toast({
+      title: "Cart Cleared",
+      description: "All items removed from cart",
+    });
+  };
+
   const getTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return cartItems.reduce((total, item) => total + item.totalPrice, 0);
   };
 
   const getTotalItems = () => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const sendWhatsAppOrder = () => {
+  const sendWhatsAppOrder = async () => {
     if (!date || cartItems.length === 0) {
-      alert('Please select a date and add items to your cart');
+      toast({
+        title: "Incomplete Order",
+        description: !date ? "Please select a date first" : "Please add items to your cart",
+        variant: "destructive",
+      });
       return;
     }
 
-    const orderDetails = [
-      `📅 Booking Date: ${format(date, 'PPP')}`,
-      '',
-      '📸 Photo Booth Services:',
-      ...cartItems.map(item => 
-        `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
-      ),
-      '',
-      `💰 Total: $${getTotalPrice().toFixed(2)}`,
-      '',
-      'Please confirm availability and provide final details. Thank you!'
-    ].join('\n');
+    setIsLoading(true);
 
-    const whatsappUrl = `https://wa.me/12027980610?text=${encodeURIComponent(orderDetails)}`;
-    window.open(whatsappUrl, '_blank');
+    try {
+      const orderDetails = [
+        `📅 Event Date: ${format(date, 'EEEE, MMMM do, yyyy')}`,
+        '',
+        '📸 StudioStation Photo Booth Services:',
+        ...cartItems.map(item => 
+          `• ${item.name} × ${item.quantity} - $${item.totalPrice.toFixed(2)}`
+        ),
+        '',
+        `💰 Subtotal: $${getTotalPrice().toFixed(2)}`,
+        `📦 Total Items: ${getTotalItems()}`,
+        '',
+        '✨ Package includes:',
+        '• Professional DSLR camera setup',
+        '• Premium backdrops & props collection',
+        '• Instant photo printing',
+        '• Professional lighting',
+        '• 1-hour setup included',
+        '',
+        'Ready to book! Please confirm availability and provide event details.'
+      ].join('\n');
+
+      const whatsappUrl = `https://wa.me/12027980610?text=${encodeURIComponent(orderDetails)}`;
+      window.open(whatsappUrl, '_blank');
+      
+      toast({
+        title: "Booking Initiated",
+        description: "WhatsApp opened with your order details",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to open WhatsApp. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <section className="py-4 md:py-8 bg-background">
+    <section className="py-6 md:py-12 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-6 md:mb-8">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 font-playfair">Book Your StudioStation</h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
-            Select your date, choose your package, and book instantly via WhatsApp
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 font-playfair">Book Your StudioStation</h2>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-inter">
+            Customize your photo booth experience with flexible hourly packages
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {/* Date Selection */}
-          <Card className="p-4 md:p-6">
-            <h3 className="text-xl md:text-2xl font-bold mb-4 font-playfair">Select Your Date</h3>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  className={cn(
-                    "w-full justify-start text-left font-normal h-12",
-                    !date && "text-muted-foreground"
-                  )}
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date ? format(date, "PPP") : <span>Pick your event date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  disabled={(date) => date < new Date()}
-                  initialFocus
-                  className="pointer-events-auto"
-                />
-              </PopoverContent>
-            </Popover>
+        <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {/* Configuration Panel */}
+          <Card className="p-4 md:p-6 space-y-6">
+            {/* Date Selection */}
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold font-playfair flex items-center gap-2">
+                <CalendarIcon className="h-5 w-5 text-primary" />
+                Select Event Date
+              </h3>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full justify-start text-left font-normal h-11 smooth-transition",
+                      !date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, "EEEE, MMMM do, yyyy") : <span>Choose your event date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={(newDate) => {
+                      setDate(newDate);
+                      if (newDate) {
+                        toast({
+                          title: "Date Selected",
+                          description: format(newDate, "EEEE, MMMM do, yyyy"),
+                        });
+                      }
+                    }}
+                    disabled={(date) => date < new Date()}
+                    initialFocus
+                    className="pointer-events-auto"
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
 
-            {/* StudioStation Packages */}
-            <div className="mt-6 md:mt-8">
-              <h4 className="text-lg font-semibold mb-4 font-playfair">StudioStation Packages</h4>
-              <div className="space-y-3">
-                {studioStationPricing.map((pricing) => (
-                  <div key={pricing.hours} className="border rounded-lg p-4 hover:bg-muted/30 transition-colors">
-                    <div className="flex justify-between items-center mb-3">
-                      <div>
-                        <h5 className="font-semibold text-base md:text-lg font-inter">
-                          {pricing.hours} Hour Service ({pricing.totalHours}h total)
-                        </h5>
-                        <p className="text-muted-foreground text-sm font-inter font-light">
-                          Includes 1hr setup, DSLR camera, backdrops, props & printing
-                        </p>
-                        <p className="text-primary font-bold text-lg font-inter">${pricing.price}</p>
-                      </div>
-                      <Button
-                        size="sm"
-                        onClick={() => addToCart(pricing)}
-                        className="flex-shrink-0 ml-2"
-                      >
-                        Add to Cart
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+            <Separator />
+
+            {/* Hour Selection */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold font-playfair flex items-center gap-2">
+                <Clock className="h-5 w-5 text-primary" />
+                Service Duration
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="font-medium">Hours: {selectedHours}</span>
+                  <span className="text-primary font-bold">${currentPrice}</span>
+                </div>
+                
+                <Slider
+                  value={[selectedHours]}
+                  onValueChange={(value) => setSelectedHours(value[0])}
+                  max={8}
+                  min={2}
+                  step={1}
+                  className="w-full"
+                />
+                
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>2 hrs</span>
+                  <span>4 hrs</span>
+                  <span>6 hrs</span>
+                  <span>8 hrs</span>
+                </div>
               </div>
+
+              <div className="bg-muted/50 rounded-lg p-3 space-y-2">
+                <div className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <span>Professional DSLR camera & lighting</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <span>Premium backdrops & props collection</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <span>Instant photo printing included</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <span>1-hour professional setup</span>
+                </div>
+              </div>
+
+              <Button
+                onClick={addToCart}
+                className="w-full h-11 font-semibold smooth-transition hover:scale-[1.02]"
+                disabled={selectedHours < 2}
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                Add {selectedHours}h Service - ${currentPrice}
+              </Button>
             </div>
           </Card>
 
           {/* Shopping Cart */}
-          <Card className="p-6">
+          <Card className="p-4 md:p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold font-playfair">Your Cart</h3>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsCartOpen(!isCartOpen)}
-                className="flex items-center gap-2"
-              >
-                <ShoppingCart className="h-4 w-4" />
-                <Badge variant="secondary">{getTotalItems()}</Badge>
-              </Button>
+              <h3 className="text-lg font-semibold font-playfair flex items-center gap-2">
+                <ShoppingCart className="h-5 w-5 text-primary" />
+                Your Cart
+              </h3>
+              <div className="flex items-center gap-2">
+                {cartItems.length > 0 && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={clearCart}
+                    className="text-destructive hover:text-destructive text-xs"
+                  >
+                    Clear All
+                  </Button>
+                )}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsCartOpen(!isCartOpen)}
+                  className="flex items-center gap-1"
+                >
+                  <Badge variant="secondary" className="animate-bounce-gentle">
+                    {getTotalItems()}
+                  </Badge>
+                  {isCartOpen ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+                </Button>
+              </div>
             </div>
 
-            {cartItems.length === 0 ? (
-              <div className="text-center py-8 text-muted-foreground">
-                <ShoppingCart className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p className="text-center py-8 text-muted-foreground font-inter">Your cart is empty</p>
-                <p className="text-sm text-center font-inter font-light">Add some photo packages above</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {cartItems.map((item) => (
-                  <div key={item.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <div className="flex-1">
-                      <h6 className="font-medium text-sm">{item.name}</h6>
-                      <p className="text-primary font-semibold">${item.price.toFixed(2)} each</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => updateQuantity(item.id, -1)}
-                        className="h-8 w-8 p-0"
-                      >
-                        <Minus className="h-3 w-3" />
-                      </Button>
-                      <span className="w-8 text-center font-medium">{item.quantity}</span>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => updateQuantity(item.id, 1)}
-                        className="h-8 w-8 p-0"
-                      >
-                        <Plus className="h-3 w-3" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onClick={() => removeFromCart(item.id)}
-                        className="h-8 w-8 p-0 text-destructive hover:text-destructive"
-                      >
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-                
-                <div className="border-t pt-4">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-lg font-semibold">Total:</span>
-                    <span className="text-2xl font-bold text-primary">
-                      ${getTotalPrice().toFixed(2)}
-                    </span>
-                  </div>
-                  
-                  <Button
-                    onClick={sendWhatsAppOrder}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3"
-                    disabled={!date || cartItems.length === 0}
-                  >
-                    Book via WhatsApp
-                  </Button>
-                  
-                  {(!date || cartItems.length === 0) && (
-                    <p className="text-xs text-muted-foreground text-center mt-2">
-                      {!date ? "Please select a date" : "Add items to your cart"}
-                    </p>
-                  )}
+            <div className={cn(
+              "overflow-hidden smooth-transition",
+              isCartOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+            )}>
+              {cartItems.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground animate-fade-in">
+                  <ShoppingCart className="h-12 w-12 mx-auto mb-3 opacity-50" />
+                  <p className="font-inter mb-1">Your cart is empty</p>
+                  <p className="text-xs font-inter">Add photo booth services above</p>
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="space-y-3">
+                  {cartItems.map((item, index) => (
+                    <div 
+                      key={item.id} 
+                      className="bg-muted/30 rounded-lg p-3 animate-fade-in smooth-transition hover:bg-muted/50"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex-1 min-w-0">
+                          <h6 className="font-medium text-sm truncate">{item.name}</h6>
+                          <p className="text-xs text-muted-foreground">
+                            ${item.basePrice} × {item.quantity} = ${item.totalPrice}
+                          </p>
+                        </div>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={() => removeFromCart(item.id)}
+                          className="h-6 w-6 p-0 text-destructive hover:text-destructive shrink-0 ml-2"
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </Button>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => updateQuantity(item.id, -1)}
+                            className="h-7 w-7 p-0"
+                          >
+                            <Minus className="h-3 w-3" />
+                          </Button>
+                          <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => updateQuantity(item.id, 1)}
+                            className="h-7 w-7 p-0"
+                          >
+                            <Plus className="h-3 w-3" />
+                          </Button>
+                        </div>
+                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <Clock className="h-3 w-3" />
+                          <span>{item.hours}h</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  <Separator className="my-4" />
+                  
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-semibold">Total:</span>
+                      <span className="text-xl font-bold text-primary">
+                        ${getTotalPrice().toFixed(2)}
+                      </span>
+                    </div>
+                    
+                    <div className="text-xs text-muted-foreground text-center">
+                      <div className="flex items-center justify-center gap-1 mb-1">
+                        <Star className="h-3 w-3 fill-current" />
+                        <span>Professional photo booth experience</span>
+                      </div>
+                      <div className="flex items-center justify-center gap-1">
+                        <Zap className="h-3 w-3" />
+                        <span>Instant booking via WhatsApp</span>
+                      </div>
+                    </div>
+                    
+                    <Button
+                      onClick={sendWhatsAppOrder}
+                      className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 h-11 smooth-transition hover:scale-[1.02]"
+                      disabled={!date || cartItems.length === 0 || isLoading}
+                    >
+                      {isLoading ? (
+                        "Opening WhatsApp..."
+                      ) : (
+                        <>
+                          <Zap className="mr-2 h-4 w-4" />
+                          Book via WhatsApp
+                        </>
+                      )}
+                    </Button>
+                    
+                    {(!date || cartItems.length === 0) && (
+                      <p className="text-xs text-muted-foreground text-center">
+                        {!date ? "Select a date to continue" : "Add services to your cart"}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
           </Card>
         </div>
       </div>

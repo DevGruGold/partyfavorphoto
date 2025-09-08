@@ -96,3 +96,25 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .smooth-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .cart-item-enter {
+    @apply opacity-0 scale-95 translate-y-2;
+  }
+  
+  .cart-item-enter-active {
+    @apply opacity-100 scale-100 translate-y-0 transition-all duration-200 ease-out;
+  }
+  
+  .cart-slide-down {
+    @apply animate-accordion-down;
+  }
+  
+  .cart-slide-up {
+    @apply animate-accordion-up;
+  }
+}
