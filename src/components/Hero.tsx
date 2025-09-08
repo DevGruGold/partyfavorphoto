@@ -61,10 +61,6 @@ const Hero = () => {
                 <Phone className="h-3 w-3 md:h-4 md:w-4" />
                 <span className="hidden sm:inline">(202) 798-0610</span>
               </a>
-              <a href="mailto:info@partyfavorphoto.com" className="hidden md:flex items-center gap-2 hover:text-primary transition-colors font-inter">
-                <Mail className="h-4 w-4" />
-                <span>info@partyfavorphoto.com</span>
-              </a>
               <Button 
                 size="sm" 
                 className="bg-green-600 hover:bg-green-700 text-white font-inter font-medium text-xs md:text-sm px-2 md:px-4"
