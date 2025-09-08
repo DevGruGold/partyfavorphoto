@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,7 @@ import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "@/contexts/TranslationContext";
+import { useCart } from "@/contexts/CartContext";
 import { 
   CalendarIcon, 
   Plus, 
@@ -35,8 +36,8 @@ interface CartItem {
 
 const BookingCart = () => {
   const { t } = useTranslation();
+  const { cartItems, addToCart, removeFromCart, updateQuantity, clearCart, getTotalItems, getTotalPrice } = useCart();
   const [date, setDate] = useState<Date>();
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(true);
   const [selectedHours, setSelectedHours] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +56,7 @@ const BookingCart = () => {
   // Get current price for selected hours
   const currentPrice = calculatePrice(selectedHours);
 
-  const addToCart = () => {
+  const handleAddToCart = () => {
     if (selectedHours < 2) {
       toast({
         title: "Invalid Selection",
@@ -66,28 +67,25 @@ const BookingCart = () => {
     }
 
     const existingItem = cartItems.find(item => item.hours === selectedHours);
+    
+    const newItem = {
+      id: `studiobooth-${selectedHours}h-${Date.now()}`,
+      type: 'standard' as const,
+      name: `StudioStation Photo Booth - ${selectedHours} Hours`,
+      basePrice: currentPrice,
+      hours: selectedHours,
+      quantity: 1,
+      totalPrice: currentPrice
+    };
+
+    addToCart(newItem);
 
     if (existingItem) {
-      setCartItems(cartItems.map(item =>
-        item.id === existingItem.id 
-          ? { ...item, quantity: item.quantity + 1, totalPrice: item.basePrice * (item.quantity + 1) }
-          : item
-      ));
       toast({
         title: "Updated Cart",
         description: `Increased quantity for ${selectedHours}h service`,
       });
     } else {
-      const newItem: CartItem = {
-        id: `studiobooth-${selectedHours}h-${Date.now()}`,
-        type: 'standard',
-        name: `StudioStation Photo Booth - ${selectedHours} Hours`,
-        basePrice: currentPrice,
-        hours: selectedHours,
-        quantity: 1,
-        totalPrice: currentPrice
-      };
-      setCartItems([...cartItems, newItem]);
       toast({
         title: "Added to Cart",
         description: `${selectedHours}h StudioStation service added`,
@@ -95,50 +93,32 @@ const BookingCart = () => {
     }
   };
 
-  const removeFromCart = (itemId: string) => {
+  const handleRemoveFromCart = (itemId: string) => {
     const item = cartItems.find(i => i.id === itemId);
-    setCartItems(cartItems.filter(item => item.id !== itemId));
+    removeFromCart(itemId);
     toast({
       title: "Removed from Cart",
       description: `${item?.name} removed`,
     });
   };
 
-  const updateQuantity = (itemId: string, change: number) => {
-    setCartItems(cartItems.map(item => {
-      if (item.id === itemId) {
-        const newQuantity = Math.max(0, item.quantity + change);
-        if (newQuantity === 0) {
-          toast({
-            title: "Removed from Cart",
-            description: `${item.name} removed`,
-          });
-          return null;
-        }
-        return { 
-          ...item, 
-          quantity: newQuantity,
-          totalPrice: item.basePrice * newQuantity
-        };
-      }
-      return item;
-    }).filter(Boolean) as CartItem[]);
+  const handleUpdateQuantity = (itemId: string, change: number) => {
+    const item = cartItems.find(i => i.id === itemId);
+    if (item && item.quantity + change === 0) {
+      toast({
+        title: "Removed from Cart",
+        description: `${item.name} removed`,
+      });
+    }
+    updateQuantity(itemId, change);
   };
 
-  const clearCart = () => {
-    setCartItems([]);
+  const handleClearCart = () => {
+    clearCart();
     toast({
       title: "Cart Cleared",
       description: "All items removed from cart",
     });
-  };
-
-  const getTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + item.totalPrice, 0);
-  };
-
-  const getTotalItems = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
   const sendWhatsAppOrder = async () => {
@@ -303,7 +283,7 @@ const BookingCart = () => {
               </div>
 
               <Button
-                onClick={addToCart}
+                onClick={handleAddToCart}
                 className="w-full h-10 sm:h-11 font-semibold smooth-transition hover:scale-[1.02] text-sm sm:text-base"
                 disabled={selectedHours < 2}
               >
@@ -325,7 +305,7 @@ const BookingCart = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={clearCart}
+                    onClick={handleClearCart}
                     className="text-destructive hover:text-destructive text-xs"
                   >
                     Clear All
@@ -373,7 +353,7 @@ const BookingCart = () => {
                         <Button
                           size="sm"
                           variant="ghost"
-                          onClick={() => removeFromCart(item.id)}
+                          onClick={() => handleRemoveFromCart(item.id)}
                           className="h-6 w-6 p-0 text-destructive hover:text-destructive shrink-0 ml-2"
                         >
                           <Trash2 className="h-3 w-3" />
@@ -385,7 +365,7 @@ const BookingCart = () => {
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => updateQuantity(item.id, -1)}
+                            onClick={() => handleUpdateQuantity(item.id, -1)}
                             className="h-7 w-7 p-0"
                           >
                             <Minus className="h-3 w-3" />
@@ -394,7 +374,7 @@ const BookingCart = () => {
                           <Button
                             size="sm"
                             variant="outline"
-                            onClick={() => updateQuantity(item.id, 1)}
+                            onClick={() => handleUpdateQuantity(item.id, 1)}
                             className="h-7 w-7 p-0"
                           >
                             <Plus className="h-3 w-3" />

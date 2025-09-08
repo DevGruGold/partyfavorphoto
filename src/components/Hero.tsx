@@ -3,6 +3,7 @@ import { Phone, Mail, Globe, ShoppingCart } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Switch } from "@/components/ui/switch";
 import { useTranslation } from "@/contexts/TranslationContext";
+import { useCart } from "@/contexts/CartContext";
 import partyFavorLogo from "@/assets/party-favor-logo-new.png";
 import heroPhotoBoothImage from "@/assets/hero-photo-booth.jpg";
 import studioStationImage from "@/assets/studio-station.jpg";
@@ -11,6 +12,7 @@ import corporateBoothImage from "@/assets/corporate-booth.jpg";
 
 const Hero = () => {
   const { language, toggleLanguage, t } = useTranslation();
+  const { getTotalItems } = useCart();
   
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -101,7 +103,7 @@ const Hero = () => {
               >
                 <ShoppingCart className="h-6 w-6 text-muted-foreground" />
                 <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full text-xs w-5 h-5 flex items-center justify-center font-bold">
-                  0
+                  {getTotalItems()}
                 </span>
               </button>
             </div>
