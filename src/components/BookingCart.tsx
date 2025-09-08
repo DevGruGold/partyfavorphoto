@@ -99,9 +99,9 @@ const BookingCart = () => {
   };
 
   return (
-    <section className="py-8 md:py-16 bg-background">
+    <section className="py-4 md:py-8 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12">
+        <div className="text-center mb-6 md:mb-8">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 font-playfair">Book Your StudioStation</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
             Select your date, choose your package, and book instantly via WhatsApp
