@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, Globe } from "lucide-react";
+import { Phone, Mail, Globe, ShoppingCart } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Switch } from "@/components/ui/switch";
 import { useTranslation } from "@/contexts/TranslationContext";
@@ -95,6 +95,15 @@ const Hero = () => {
               >
                 <span className="text-sm md:text-base">(202) 798-0610</span>
               </a>
+              <button 
+                className="relative flex items-center justify-center hover:text-primary transition-colors"
+                onClick={() => scrollToSection('booking')}
+              >
+                <ShoppingCart className="h-6 w-6 text-muted-foreground" />
+                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full text-xs w-5 h-5 flex items-center justify-center font-bold">
+                  0
+                </span>
+              </button>
             </div>
           </div>
         </div>
