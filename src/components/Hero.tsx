@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, Globe } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Switch } from "@/components/ui/switch";
+import { useTranslation } from "@/contexts/TranslationContext";
 import partyFavorLogo from "@/assets/party-favor-logo-new.png";
 import heroPhotoBoothImage from "@/assets/hero-photo-booth.jpg";
 import studioStationImage from "@/assets/studio-station.jpg";
@@ -8,6 +10,8 @@ import weddingBoothImage from "@/assets/wedding-booth-fun.jpg";
 import corporateBoothImage from "@/assets/corporate-booth.jpg";
 
 const Hero = () => {
+  const { language, toggleLanguage, t } = useTranslation();
+  
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -20,38 +24,38 @@ const Hero = () => {
 
   const heroSlides = [
     {
-      title: "StudioStation Photo Booth",
-      subtitle: "Our flagship service",
-      price: "From $498",
-      duration: "2-5 hours",
+      title: t('hero.studioStation.title'),
+      subtitle: t('hero.studioStation.subtitle'),
+      price: t('hero.studioStation.price'),
+      duration: t('hero.studioStation.duration'),
       image: studioStationImage,
-      description: "Professional DSLR camera with glamorous sequin backdrops, goofy props, QR code sharing and unlimited custom prints",
-      cta: "Book StudioStation",
+      description: t('hero.studioStation.description'),
+      cta: t('hero.studioStation.cta'),
       isHero: true
     },
     {
-      title: "Professional Photo Booth Services",
-      subtitle: "Award-winning experiences in the DMV area",
+      title: t('hero.professional.title'),
+      subtitle: t('hero.professional.subtitle'),
       image: heroPhotoBoothImage,
-      cta: "Book Your Event"
+      cta: t('hero.professional.cta')
     },
     {
-      title: "Wedding Packages",
-      subtitle: "Make your special day unforgettable",
-      price: "Custom pricing",
-      duration: "4-6 hours", 
+      title: t('hero.wedding.title'),
+      subtitle: t('hero.wedding.subtitle'),
+      price: t('hero.wedding.price'),
+      duration: t('hero.wedding.duration'), 
       image: weddingBoothImage,
-      description: "Custom wedding backdrops with guest book integration and same-day photo delivery",
-      cta: "Book Wedding Package"
+      description: t('hero.wedding.description'),
+      cta: t('hero.wedding.cta')
     },
     {
-      title: "Corporate Events",
-      subtitle: "Professional fun for business",
-      price: "From $750",
-      duration: "3-8 hours",
+      title: t('hero.corporate.title'),
+      subtitle: t('hero.corporate.subtitle'),
+      price: t('hero.corporate.price'),
+      duration: t('hero.corporate.duration'),
       image: corporateBoothImage, 
-      description: "Branded backdrops with social media integration for corporate events and team building",
-      cta: "Book Corporate Event"
+      description: t('hero.corporate.description'),
+      cta: t('hero.corporate.cta')
     }
   ];
 
@@ -61,8 +65,21 @@ const Hero = () => {
       <header className="bg-white/98 backdrop-blur-sm border-b border-border/20 relative z-50 shadow-lg">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            {/* Logo - Centered and doubled in size */}
-            <div className="flex-1 flex justify-center">
+            {/* Language Toggle - Left side */}
+            <div className="flex items-center gap-2">
+              <Globe className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm font-sans font-medium text-muted-foreground">
+                {language === 'en' ? 'EN' : 'ES'}
+              </span>
+              <Switch
+                checked={language === 'es'}
+                onCheckedChange={toggleLanguage}
+                className="scale-75"
+              />
+            </div>
+            
+            {/* Logo - Centered */}
+            <div className="absolute left-1/2 transform -translate-x-1/2">
               <img 
                 src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png"
                 alt="Party Favor Photo" 
@@ -70,9 +87,8 @@ const Hero = () => {
               />
             </div>
             
-            {/* Contact Actions - Mobile optimized */}
+            {/* Contact Actions - Right side */}
             <div className="flex items-center gap-3">
-              {/* Phone Number - Always visible and clickable */}
               <a 
                 href="tel:+12027980610" 
                 className="flex items-center gap-2 hover:text-primary transition-colors font-sans text-muted-foreground font-semibold"
@@ -128,7 +144,7 @@ const Hero = () => {
                                 className="px-8 py-4 text-lg border-2 border-white/80 text-white bg-white/10 hover:bg-white hover:text-primary transition-all font-sans font-semibold backdrop-blur-md"
                                 onClick={() => scrollToSection('services')}
                               >
-                                View Our Work
+                                {t('hero.viewWork')}
                               </Button>
                             </div>
                           </>
@@ -152,7 +168,7 @@ const Hero = () => {
                                   {slide.price}
                                 </span>
                                 <span className="opacity-90 font-sans font-medium text-base drop-shadow-md" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
-                                  Duration: {slide.duration}
+                                  {t('hero.duration')}: {slide.duration}
                                 </span>
                               </div>
                             </div>

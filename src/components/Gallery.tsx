@@ -1,5 +1,6 @@
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslation } from "@/contexts/TranslationContext";
 
 interface Review {
   author: string;
@@ -8,6 +9,7 @@ interface Review {
 }
 
 const Gallery = () => {
+  const { t } = useTranslation();
   const galleryItems = [
     {
       image: "/lovable-uploads/48af98af-f972-4155-bd47-0cf3c74b3b87.png",
@@ -87,7 +89,7 @@ const Gallery = () => {
                 ))}
               </div>
               <span className="font-bold text-base sm:text-lg">5.0</span>
-              <span className="text-xs sm:text-sm text-muted-foreground">on The Knot</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">{t('gallery.theKnot')}</span>
             </div>
             <div className="flex items-center gap-2 bg-white rounded-lg p-2 sm:p-3 shadow-sm">
               <div className="flex">
@@ -96,14 +98,14 @@ const Gallery = () => {
                 ))}
               </div>
               <span className="font-bold text-base sm:text-lg">5.0</span>
-              <span className="text-xs sm:text-sm text-muted-foreground">on WeddingWire</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">{t('gallery.weddingWire')}</span>
             </div>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            See Our Work in Action
+            {t('gallery.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real moments captured at real events. Here's what our clients are saying about their Party Favor Photo experience.
+            {t('gallery.subtitle')}
           </p>
         </div>
 
@@ -127,7 +129,7 @@ const Gallery = () => {
                       />
                     ))}
                   </div>
-                  <span className="text-xs text-muted-foreground">The Knot</span>
+                  <span className="text-xs text-muted-foreground">{t('gallery.theKnot')}</span>
                 </div>
                 <blockquote className="text-foreground mb-3 italic text-sm">
                   "{item.review.text}"
@@ -142,7 +144,7 @@ const Gallery = () => {
                   rel="noopener noreferrer"
                   className="text-xs text-primary hover:underline"
                 >
-                  Read full review →
+                  {t('gallery.readFullReview')}
                 </a>
               </CardContent>
             </Card>
@@ -157,20 +159,20 @@ const Gallery = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
             >
-              <span className="text-center">View all reviews on The Knot</span>
+              <span className="text-center">{t('gallery.viewAllReviews')}</span>
               <span>→</span>
             </a>
             <span className="text-muted-foreground hidden sm:inline">|</span>
-            <span className="text-xs sm:text-sm text-muted-foreground">10+ verified reviews</span>
+            <span className="text-xs sm:text-sm text-muted-foreground">{t('gallery.verifiedReviews')}</span>
           </div>
           <p className="text-lg text-muted-foreground mb-4">
-            Ready to create your own unforgettable moments?
+            {t('gallery.readyToCreate')}
           </p>
           <a 
             href="#booking"
             className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium transition-colors"
           >
-            Book Your Photo Booth Today
+            {t('gallery.bookToday')}
           </a>
         </div>
       </div>

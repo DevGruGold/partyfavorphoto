@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "@/contexts/TranslationContext";
 import { 
   CalendarIcon, 
   Plus, 
@@ -33,6 +34,7 @@ interface CartItem {
 }
 
 const BookingCart = () => {
+  const { t } = useTranslation();
   const [date, setDate] = useState<Date>();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(true);
@@ -195,9 +197,9 @@ const BookingCart = () => {
     <section className="py-4 sm:py-6 md:py-8 bg-background">
       <div className="container mx-auto px-3 sm:px-4">
         <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 font-playfair">Book Your StudioStation</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 font-playfair">{t('booking.title')}</h2>
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-inter px-2 mb-4">
-            Customize your photo booth experience with flexible hourly packages
+            {t('booking.subtitle')}
           </p>
           <Button
             variant="outline"

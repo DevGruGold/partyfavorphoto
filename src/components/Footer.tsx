@@ -1,7 +1,10 @@
 import { Phone, Mail, MapPin, Instagram, Star } from "lucide-react";
+import { useTranslation } from "@/contexts/TranslationContext";
 import partyFavorLogo from "@/assets/party-favor-logo.png";
 
 const Footer = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer className="bg-secondary text-secondary-foreground py-16">
       <div className="container mx-auto px-4">
@@ -14,7 +17,7 @@ const Footer = () => {
               className="h-12 mb-4"
             />
             <p className="mb-4 text-secondary-foreground/80 max-w-md">
-              Professional photo booth services bringing memorable experiences to events across the Washington D.C. metro area.
+              {t('footer.tagline')}
             </p>
             <p className="text-sm text-secondary-foreground/60">
               Established in Arlington, Virginia
@@ -23,7 +26,7 @@ const Footer = () => {
           
           {/* Contact Information */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Contact</h3>
+            <h3 className="font-bold text-lg mb-4">{t('footer.contact')}</h3>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
@@ -71,7 +74,7 @@ const Footer = () => {
             </a>
           </div>
           <p className="text-sm text-secondary-foreground/60">
-            © 2024 Party Favor Photo. All rights reserved.
+            {t('footer.allRightsReserved')}
           </p>
         </div>
       </div>

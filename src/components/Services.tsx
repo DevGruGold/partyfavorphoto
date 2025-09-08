@@ -4,47 +4,50 @@ import corporateBoothImage from "@/assets/corporate-booth.jpg";
 import celebrationBoothImage from "@/assets/celebration-booth.jpg";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
+import { useTranslation } from "@/contexts/TranslationContext";
 
 const Services = () => {
+  const { t } = useTranslation();
+  
   const services = [
     {
-      title: "StudioStation Photo Booth",
-      subtitle: "Our flagship service",
+      title: t('services.studioStation.title'),
+      subtitle: t('services.studioStation.subtitle'),
       image: studioStationImage,
       price: "From $498",
       duration: "2-5 hours",
       features: [
-        "Professional DSLR camera",
-        "Glamorous sequin backdrops",
+        t('services.studioStation.features.camera'),
+        t('services.studioStation.features.backdrops'),
         "Professional strobe lighting",
-        "Unlimited custom prints",
-        "QR code sharing",
-        "Professional attendant",
+        t('services.studioStation.features.prints'),
+        t('services.studioStation.features.sharing'),
+        t('services.studioStation.features.attendant'),
         "Goofy props included",
         "1 hour free setup included"
       ],
-      description: "Our elegant ballroom service with real DSLR camera, popping strobe flash, and unlimited custom prints will be the highlight of your party!"
+      description: t('services.studioStation.description')
     },
     {
-      title: "Wedding Packages",
-      subtitle: "Make your special day unforgettable",
+      title: t('services.wedding.title'),
+      subtitle: t('services.wedding.subtitle'),
       image: weddingBoothImage,
       price: "From $998",
       duration: "4-6 hours",
       features: [
-        "Custom wedding backdrops",
+        t('services.wedding.features.custom'),
         "Bride & groom props",
-        "Guest book integration",
+        t('services.wedding.features.guestbook'),
         "Online gallery access",
-        "Same-day photo delivery",
+        t('services.wedding.features.delivery'),
         "Coordinator included",
-        "Setup & breakdown"
+        t('services.wedding.features.setup')
       ],
-      description: "Capture the joy and laughter of your wedding day with our premium photo booth experience designed specifically for weddings."
+      description: t('services.wedding.description')
     },
     {
-      title: "Corporate Events",
-      subtitle: "Professional fun for business",
+      title: t('services.corporate.title'),
+      subtitle: t('services.corporate.subtitle'),
       image: corporateBoothImage,
       price: "From $750",
       duration: "3-8 hours",
@@ -52,30 +55,30 @@ const Services = () => {
         "Branded backdrops available",
         "Corporate prop packages",
         "Digital delivery options",
-        "Social media integration",
+        t('services.corporate.features.social'),
         "Professional setup",
-        "Event coordination",
+        t('services.corporate.features.coordination'),
         "Custom print layouts"
       ],
-      description: "Add excitement to your corporate events, holiday parties, and team building activities with our professional photo booth services."
+      description: t('services.corporate.description')
     },
     {
-      title: "Celebration Packages",
-      subtitle: "Perfect for birthdays, bar mitzvahs & quinceañeras",
+      title: t('services.celebration.title'),
+      subtitle: t('services.celebration.subtitle'),
       image: celebrationBoothImage,
       price: "From $595",
       duration: "3-5 hours",
       features: [
-        "Custom balloon arches",
-        "Celebration-themed props",
+        t('services.celebration.features.balloons'),
+        t('services.celebration.features.themes'),
         "Age-appropriate backdrops",
         "Cultural celebration elements",
         "Custom print designs",
-        "Party coordination",
+        t('services.celebration.features.coordination'),
         "Themed decoration setup",
         "Social media sharing"
       ],
-      description: "Make milestone celebrations unforgettable with our specialized packages for birthdays, bar mitzvahs, quinceañeras, and other special occasions."
+      description: t('services.celebration.description')
     }
   ];
 
@@ -84,9 +87,9 @@ const Services = () => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground font-playfair">Service Details</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground font-playfair">{t('services.title')}</h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
-            Complete information about our professional photo booth packages
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -115,7 +118,7 @@ const Services = () => {
                   <h3 className="text-2xl font-bold mb-2 font-playfair">{service.title}</h3>
                   <p className="text-muted-foreground mb-4 font-inter font-light">{service.description}</p>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 font-inter">
-                    <span>Duration: {service.duration}</span>
+                    <span>{t('hero.duration')}: {service.duration}</span>
                   </div>
                 </div>
                 
@@ -134,7 +137,7 @@ const Services = () => {
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
                   onClick={() => window.open('https://wa.me/50661500559?text=Hi!%20Please%20send%20me%20more%20information%20about%20' + encodeURIComponent(service.title), '_blank')}
                 >
-                  Request Quote via WhatsApp
+                  {t('services.bookNow')}
                 </Button>
               </div>
             </div>
