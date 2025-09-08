@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Star } from "lucide-react";
 import partyFavorLogo from "@/assets/party-favor-logo.png";
 
 const Footer = () => {
@@ -53,8 +53,22 @@ const Footer = () => {
         {/* Social Media and Copyright */}
         <div className="border-t border-secondary-foreground/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center gap-4 mb-4 md:mb-0">
-            <Instagram className="h-5 w-5 hover:text-secondary-foreground/70 cursor-pointer transition-colors" />
-            <Facebook className="h-5 w-5 hover:text-secondary-foreground/70 cursor-pointer transition-colors" />
+            <a 
+              href="https://www.instagram.com/partyfavorphoto/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-secondary-foreground/70 transition-colors"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a 
+              href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://m.yelp.com/biz/party-favor-photo-arlington-3&ved=2ahUKEwj4uJr-jMqPAxUYRTABHQBWB6gQFnoECGIQAQ&usg=AOvVaw04m1e8rHRMzeTObwSpWk9R" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-secondary-foreground/70 transition-colors"
+            >
+              <Star className="h-5 w-5" />
+            </a>
           </div>
           <p className="text-sm text-secondary-foreground/60">
             © 2024 Party Favor Photo. All rights reserved.
