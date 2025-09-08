@@ -1,18 +1,60 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import partyFavorLogo from "@/assets/party-favor-logo.png";
+import heroPhotoBoothImage from "@/assets/hero-photo-booth.jpg";
+import studioStationImage from "@/assets/studio-station.jpg";
+import weddingBoothImage from "@/assets/wedding-booth-fun.jpg";
+import corporateBoothImage from "@/assets/corporate-booth.jpg";
 
 const Hero = () => {
+  const heroSlides = [
+    {
+      title: "Professional Photo Booth Services",
+      subtitle: "Award-winning experiences in the DMV area",
+      image: heroPhotoBoothImage,
+      cta: "Book Your Event",
+      isHero: true
+    },
+    {
+      title: "StudioStation Photo Booth",
+      subtitle: "Our flagship service",
+      price: "From $498",
+      duration: "2-3 hours",
+      image: studioStationImage,
+      description: "Professional DSLR camera with glamorous sequin backdrops and unlimited custom prints",
+      cta: "Book StudioStation"
+    },
+    {
+      title: "Wedding Packages",
+      subtitle: "Make your special day unforgettable",
+      price: "Custom pricing",
+      duration: "4-6 hours", 
+      image: weddingBoothImage,
+      description: "Custom wedding backdrops with guest book integration and same-day photo delivery",
+      cta: "Book Wedding Package"
+    },
+    {
+      title: "Corporate Events",
+      subtitle: "Professional fun for business",
+      price: "From $750",
+      duration: "3-8 hours",
+      image: corporateBoothImage, 
+      description: "Branded backdrops with social media integration for corporate events and team building",
+      cta: "Book Corporate Event"
+    }
+  ];
+
   return (
     <section className="bg-background">
-      {/* Header */}
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-6">
+      {/* Slim Header */}
+      <header className="bg-white border-b border-border/10 relative z-50">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <img 
               src={partyFavorLogo} 
               alt="Party Favor Photo" 
-              className="h-12 object-contain"
+              className="h-8 object-contain"
             />
             <div className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -28,53 +70,79 @@ const Hero = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-            Professional Photo Booth Services
-          </h1>
-          
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Award-winning photo booth experiences for weddings, corporate events, and special celebrations in the Washington D.C. metro area.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button size="lg" className="px-8 py-4">
-              Book Your Event
-            </Button>
-            <Button variant="outline" size="lg" className="px-8 py-4">
-              View Our Work
-            </Button>
-          </div>
-
-          {/* Services Overview */}
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-primary-foreground">1</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Professional Quality</h3>
-              <p className="text-muted-foreground">DSLR cameras and professional lighting for stunning photos</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-primary-foreground">2</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Complete Service</h3>
-              <p className="text-muted-foreground">Setup, props, attendant, and unlimited prints included</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-primary-foreground">3</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Trusted Experience</h3>
-              <p className="text-muted-foreground">Serving the DMV area with exceptional service since 2020</p>
-            </div>
-          </div>
-        </div>
+      {/* Photo-Forward Hero Carousel */}
+      <div className="relative h-screen">
+        <Carousel className="h-full">
+          <CarouselContent className="h-full">
+            {heroSlides.map((slide, index) => (
+              <CarouselItem key={index} className="h-full relative">
+                <div className="relative h-full">
+                  <img 
+                    src={slide.image} 
+                    alt={slide.title}
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+                  
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="container mx-auto px-4">
+                      <div className="max-w-2xl text-white">
+                        {slide.isHero ? (
+                          <>
+                            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                              {slide.title}
+                            </h1>
+                            <p className="text-xl md:text-2xl mb-8 opacity-90">
+                              {slide.subtitle}
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                              <Button size="lg" className="px-8 py-4 text-lg">
+                                {slide.cta}
+                              </Button>
+                              <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-white/30 text-white hover:bg-white/10">
+                                View Our Work
+                              </Button>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="mb-4">
+                              <p className="text-sm uppercase tracking-wide font-semibold opacity-90 mb-2">
+                                {slide.subtitle}
+                              </p>
+                              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                                {slide.title}
+                              </h2>
+                              <p className="text-lg md:text-xl mb-6 opacity-90">
+                                {slide.description}
+                              </p>
+                              <div className="flex items-center gap-6 mb-6 text-sm">
+                                <span className="bg-white/20 px-3 py-1 rounded-md backdrop-blur-sm">
+                                  {slide.price}
+                                </span>
+                                <span className="opacity-90">
+                                  Duration: {slide.duration}
+                                </span>
+                              </div>
+                            </div>
+                            <Button size="lg" className="px-8 py-4">
+                              {slide.cta}
+                            </Button>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-4 text-white border-white/30 hover:bg-white/10" />
+          <CarouselNext className="right-4 text-white border-white/30 hover:bg-white/10" />
+        </Carousel>
       </div>
     </section>
   );
