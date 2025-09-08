@@ -14,17 +14,17 @@ const Services = () => {
       title: t('services.studioStation.title'),
       subtitle: t('services.studioStation.subtitle'),
       image: studioStationImage,
-      price: "From $498",
-      duration: "2-5 hours",
+      price: t('hero.studioStation.price'),
+      duration: t('hero.studioStation.duration'),
       features: [
         t('services.studioStation.features.camera'),
         t('services.studioStation.features.backdrops'),
-        "Professional strobe lighting",
+        t('services.features.lighting'),
         t('services.studioStation.features.prints'),
         t('services.studioStation.features.sharing'),
         t('services.studioStation.features.attendant'),
-        "Goofy props included",
-        "1 hour free setup included"
+        t('services.features.props'),
+        t('services.features.setup')
       ],
       description: t('services.studioStation.description')
     },
@@ -32,15 +32,15 @@ const Services = () => {
       title: t('services.wedding.title'),
       subtitle: t('services.wedding.subtitle'),
       image: weddingBoothImage,
-      price: "From $998",
-      duration: "4-6 hours",
+      price: t('hero.wedding.price'),
+      duration: t('hero.wedding.duration'),
       features: [
         t('services.wedding.features.custom'),
-        "Bride & groom props",
+        t('services.features.brideGroom'),
         t('services.wedding.features.guestbook'),
-        "Online gallery access",
+        t('services.features.onlineGallery'),
         t('services.wedding.features.delivery'),
-        "Coordinator included",
+        t('services.features.coordinator'),
         t('services.wedding.features.setup')
       ],
       description: t('services.wedding.description')
@@ -49,16 +49,16 @@ const Services = () => {
       title: t('services.corporate.title'),
       subtitle: t('services.corporate.subtitle'),
       image: corporateBoothImage,
-      price: "From $750",
-      duration: "3-8 hours",
+      price: t('hero.corporate.price'),
+      duration: t('hero.corporate.duration'),
       features: [
-        "Branded backdrops available",
-        "Corporate prop packages",
-        "Digital delivery options",
+        t('services.features.brandedBackdrops'),
+        t('services.features.corporateProps'),
+        t('services.features.digitalDelivery'),
         t('services.corporate.features.social'),
-        "Professional setup",
+        t('services.features.professionalSetup'),
         t('services.corporate.features.coordination'),
-        "Custom print layouts"
+        t('services.features.customLayouts')
       ],
       description: t('services.corporate.description')
     },
@@ -71,12 +71,12 @@ const Services = () => {
       features: [
         t('services.celebration.features.balloons'),
         t('services.celebration.features.themes'),
-        "Age-appropriate backdrops",
-        "Cultural celebration elements",
-        "Custom print designs",
+        t('services.features.ageAppropriate'),
+        t('services.features.culturalElements'),
+        t('services.features.customDesigns'),
         t('services.celebration.features.coordination'),
-        "Themed decoration setup",
-        "Social media sharing"
+        t('services.features.themedDecorations'),
+        t('services.features.socialSharing')
       ],
       description: t('services.celebration.description')
     }
@@ -146,9 +146,9 @@ const Services = () => {
 
         {/* Additional Services Note */}
         <div className="text-center mt-12 md:mt-16 bg-card border rounded-lg p-6 md:p-8">
-          <h3 className="text-xl md:text-2xl font-bold mb-4 text-foreground">Serving Multiple Markets</h3>
+          <h3 className="text-xl md:text-2xl font-bold mb-4 text-foreground">{t('services.areas.title')}</h3>
           <p className="text-base md:text-lg text-muted-foreground mb-6">
-            We're proud to serve Washington D.C., Maryland, Virginia, and expanding to Colorado, Texas, and Florida.
+            {t('services.areas.description')}
           </p>
           <div className="flex flex-wrap justify-center gap-2 md:gap-3">
             <span className="px-3 md:px-4 py-2 bg-muted text-muted-foreground rounded-md text-xs md:text-sm">Washington D.C.</span>

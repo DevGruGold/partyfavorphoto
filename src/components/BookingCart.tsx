@@ -59,8 +59,8 @@ const BookingCart = () => {
   const handleAddToCart = () => {
     if (selectedHours < 2) {
       toast({
-        title: "Invalid Selection",
-        description: "Minimum booking is 2 hours",
+        title: t('cart.invalidSelection'),
+        description: t('cart.minimumBooking'),
         variant: "destructive",
       });
       return;
@@ -82,13 +82,13 @@ const BookingCart = () => {
 
     if (existingItem) {
       toast({
-        title: "Updated Cart",
-        description: `Increased quantity for ${selectedHours}h service`,
+        title: t('cart.updatedCart'),
+        description: `${t('cart.increasedQuantity')} ${selectedHours}h ${t('cart.service')}`,
       });
     } else {
       toast({
-        title: "Added to Cart",
-        description: `${selectedHours}h StudioStation service added`,
+        title: t('cart.addedToCart'),
+        description: `${selectedHours}h StudioStation ${t('cart.serviceAdded')}`,
       });
     }
   };
@@ -97,8 +97,8 @@ const BookingCart = () => {
     const item = cartItems.find(i => i.id === itemId);
     removeFromCart(itemId);
     toast({
-      title: "Removed from Cart",
-      description: `${item?.name} removed`,
+      title: t('cart.removedFromCart'),
+      description: `${item?.name} ${t('cart.removed')}`,
     });
   };
 
@@ -106,8 +106,8 @@ const BookingCart = () => {
     const item = cartItems.find(i => i.id === itemId);
     if (item && item.quantity + change === 0) {
       toast({
-        title: "Removed from Cart",
-        description: `${item.name} removed`,
+        title: t('cart.removedFromCart'),
+        description: `${item.name} ${t('cart.removed')}`,
       });
     }
     updateQuantity(itemId, change);
@@ -116,16 +116,16 @@ const BookingCart = () => {
   const handleClearCart = () => {
     clearCart();
     toast({
-      title: "Cart Cleared",
-      description: "All items removed from cart",
+      title: t('cart.cartCleared'),
+      description: t('cart.allItemsRemoved'),
     });
   };
 
   const sendWhatsAppOrder = async () => {
     if (!date || cartItems.length === 0) {
       toast({
-        title: "Incomplete Order",
-        description: !date ? "Please select a date first" : "Please add items to your cart",
+        title: t('cart.incompleteOrder'),
+        description: !date ? t('cart.selectDateFirst') : t('cart.addItemsFirst'),
         variant: "destructive",
       });
       return;
@@ -159,13 +159,13 @@ const BookingCart = () => {
       window.open(whatsappUrl, '_blank');
       
       toast({
-        title: "Booking Initiated",
-        description: "WhatsApp opened with your order details",
+        title: t('cart.bookingInitiated'),
+        description: t('cart.whatsappOpened'),
       });
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to open WhatsApp. Please try again.",
+        title: t('cart.error'),
+        description: t('cart.whatsappFailed'),
         variant: "destructive",
       });
     } finally {
@@ -190,9 +190,9 @@ const BookingCart = () => {
               }
             }}
             className="mb-2"
-          >
-            View Our Work
-          </Button>
+            >
+              {t('cart.viewWork')}
+            </Button>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 max-w-6xl mx-auto">
@@ -202,7 +202,7 @@ const BookingCart = () => {
             <div className="space-y-2 sm:space-y-3">
               <h3 className="text-base sm:text-lg font-semibold font-playfair flex items-center gap-2">
                 <CalendarIcon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                Select Event Date
+                {t('cart.selectDate')}
               </h3>
               <div className="relative">
                 <Input
@@ -213,7 +213,7 @@ const BookingCart = () => {
                     setDate(newDate);
                     if (newDate) {
                       toast({
-                        title: "Date Selected",
+                        title: t('cart.dateSelected'),
                         description: format(newDate, "EEEE, MMMM do, yyyy"),
                       });
                     }
@@ -237,12 +237,12 @@ const BookingCart = () => {
             <div className="space-y-3 sm:space-y-4">
               <h3 className="text-base sm:text-lg font-semibold font-playfair flex items-center gap-2">
                 <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                Service Duration
+                {t('cart.serviceDuration')}
               </h3>
               
               <div className="space-y-4">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="font-medium">Hours: {selectedHours}</span>
+                  <span className="font-medium">{t('cart.hours')}: {selectedHours}</span>
                   <span className="text-primary font-bold">${currentPrice}</span>
                 </div>
                 
@@ -266,19 +266,19 @@ const BookingCart = () => {
               <div className="bg-muted/50 rounded-lg p-3 space-y-2">
                 <div className="flex items-center gap-2 text-sm">
                   <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span>Professional DSLR camera & lighting</span>
+                  <span>{t('cart.includes.camera')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span>Premium backdrops & props collection</span>
+                  <span>{t('cart.includes.backdrops')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span>Instant photo printing included</span>
+                  <span>{t('cart.includes.printing')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <CheckCircle className="h-4 w-4 text-green-600" />
-                  <span>1-hour professional setup</span>
+                  <span>{t('cart.includes.setup')}</span>
                 </div>
               </div>
 
@@ -288,7 +288,7 @@ const BookingCart = () => {
                 disabled={selectedHours < 2}
               >
                 <Plus className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                Add {selectedHours}h Service - ${currentPrice}
+                {t('cart.addService')} {selectedHours}h {t('cart.service')} - ${currentPrice}
               </Button>
             </div>
           </Card>
@@ -298,7 +298,7 @@ const BookingCart = () => {
             <div className="flex items-center justify-between mb-3 sm:mb-4">
               <h3 className="text-base sm:text-lg font-semibold font-playfair flex items-center gap-2">
                 <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                Your Cart
+                {t('cart.title')}
               </h3>
               <div className="flex items-center gap-2">
                 {cartItems.length > 0 && (
@@ -308,7 +308,7 @@ const BookingCart = () => {
                     onClick={handleClearCart}
                     className="text-destructive hover:text-destructive text-xs"
                   >
-                    Clear All
+                    {t('cart.clearAll')}
                   </Button>
                 )}
                 <Button
@@ -332,8 +332,8 @@ const BookingCart = () => {
               {cartItems.length === 0 ? (
                 <div className="text-center py-8 text-muted-foreground animate-fade-in">
                   <ShoppingCart className="h-12 w-12 mx-auto mb-3 opacity-50" />
-                  <p className="font-inter mb-1">Your cart is empty</p>
-                  <p className="text-xs font-inter">Add photo booth services above</p>
+                  <p className="font-inter mb-1">{t('cart.empty')}</p>
+                  <p className="text-xs font-inter">{t('cart.emptySubtext')}</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -392,7 +392,7 @@ const BookingCart = () => {
                   
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold">Total:</span>
+                      <span className="font-semibold">{t('cart.total')}:</span>
                       <span className="text-xl font-bold text-primary">
                         ${getTotalPrice().toFixed(2)}
                       </span>
@@ -401,11 +401,11 @@ const BookingCart = () => {
                     <div className="text-xs text-muted-foreground text-center">
                       <div className="flex items-center justify-center gap-1 mb-1">
                         <Star className="h-3 w-3 fill-current" />
-                        <span>Professional photo booth experience</span>
+                        <span>{t('cart.professionalExperience')}</span>
                       </div>
                       <div className="flex items-center justify-center gap-1">
                         <Zap className="h-3 w-3" />
-                        <span>Instant booking via WhatsApp</span>
+                        <span>{t('cart.instantBooking')}</span>
                       </div>
                     </div>
                     
@@ -415,18 +415,18 @@ const BookingCart = () => {
                       disabled={!date || cartItems.length === 0 || isLoading}
                     >
                       {isLoading ? (
-                        "Opening WhatsApp..."
+                        t('cart.openingWhatsApp')
                       ) : (
                         <>
                           <Zap className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                          Book via WhatsApp
+                          {t('cart.bookWhatsApp')}
                         </>
                       )}
                     </Button>
                     
                     {(!date || cartItems.length === 0) && (
                       <p className="text-xs text-muted-foreground text-center">
-                        {!date ? "Select a date to continue" : "Add services to your cart"}
+                        {!date ? t('cart.selectDateToContinue') : t('cart.addServicesToContinue')}
                       </p>
                     )}
                   </div>
