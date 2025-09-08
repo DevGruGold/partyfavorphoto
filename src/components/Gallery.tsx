@@ -79,24 +79,24 @@ const Gallery = () => {
     <section id="gallery" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <div className="flex justify-center items-center gap-6 mb-6">
-            <div className="flex items-center gap-2 bg-white rounded-lg p-3 shadow-sm">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 mb-6">
+            <div className="flex items-center gap-2 bg-white rounded-lg p-2 sm:p-3 shadow-sm">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="font-bold text-lg">5.0</span>
-              <span className="text-sm text-muted-foreground">on The Knot</span>
+              <span className="font-bold text-base sm:text-lg">5.0</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">on The Knot</span>
             </div>
-            <div className="flex items-center gap-2 bg-white rounded-lg p-3 shadow-sm">
+            <div className="flex items-center gap-2 bg-white rounded-lg p-2 sm:p-3 shadow-sm">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                  <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="font-bold text-lg">5.0</span>
-              <span className="text-sm text-muted-foreground">on WeddingWire</span>
+              <span className="font-bold text-base sm:text-lg">5.0</span>
+              <span className="text-xs sm:text-sm text-muted-foreground">on WeddingWire</span>
             </div>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -150,18 +150,18 @@ const Gallery = () => {
         </div>
 
         <div className="text-center mt-12">
-          <div className="flex justify-center items-center gap-4 mb-4">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 mb-4 px-4">
             <a 
               href="https://www.theknot.com/marketplace/party-favor-photo-arlington-va-989593"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
             >
-              <span>View all reviews on The Knot</span>
+              <span className="text-center">View all reviews on The Knot</span>
               <span>→</span>
             </a>
-            <span className="text-muted-foreground">|</span>
-            <span className="text-sm text-muted-foreground">10+ verified reviews</span>
+            <span className="text-muted-foreground hidden sm:inline">|</span>
+            <span className="text-xs sm:text-sm text-muted-foreground">10+ verified reviews</span>
           </div>
           <p className="text-lg text-muted-foreground mb-4">
             Ready to create your own unforgettable moments?
