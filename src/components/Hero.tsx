@@ -72,11 +72,11 @@ const Hero = () => {
             <div className="flex items-center gap-3">
               {/* Phone - Show icon only on mobile */}
               <a 
-                href="tel:+50661500559" 
+                href="tel:+12027980610" 
                 className="flex items-center gap-2 hover:text-primary transition-colors font-inter text-muted-foreground"
               >
                 <Phone className="h-4 w-4" />
-                <span className="hidden md:inline text-sm">+506 6150-0559</span>
+                <span className="hidden md:inline text-sm">(202) 798-0610</span>
               </a>
               
               {/* WhatsApp Button - Better mobile styling */}
