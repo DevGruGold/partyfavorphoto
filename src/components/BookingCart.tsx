@@ -41,14 +41,14 @@ const BookingCart = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  // Base pricing structure
-  const BASE_RATE = 199; // Base rate for 1st hour + setup
-  const HOURLY_RATE = 149; // Each additional hour
+  // Base pricing structure - aligned with partyfavorphoto.com
+  const BASE_PRICE_2HRS = 498; // Base price for minimum 2 hours
+  const HOURLY_RATE = 249; // Each additional hour
 
   // Calculate price based on hours
   const calculatePrice = (hours: number) => {
-    if (hours <= 1) return BASE_RATE;
-    return BASE_RATE + (hours - 1) * HOURLY_RATE;
+    if (hours <= 2) return BASE_PRICE_2HRS;
+    return BASE_PRICE_2HRS + (hours - 2) * HOURLY_RATE;
   };
 
   // Get current price for selected hours
@@ -193,7 +193,7 @@ const BookingCart = () => {
   };
 
   return (
-    <section className="py-6 md:py-12 bg-background">
+    <section className="py-2 md:py-4 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 font-playfair">Book Your StudioStation</h2>

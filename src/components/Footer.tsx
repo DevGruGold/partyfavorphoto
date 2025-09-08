@@ -9,9 +9,9 @@ const Footer = () => {
           {/* Logo and Company Info */}
           <div className="md:col-span-2">
             <img 
-              src={partyFavorLogo} 
+              src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png" 
               alt="Party Favor Photo" 
-              className="h-12 mb-4 filter brightness-0 invert"
+              className="h-12 mb-4"
             />
             <p className="mb-4 text-primary-foreground/80 max-w-md">
               Professional photo booth services bringing memorable experiences to events across the Washington D.C. metro area.
