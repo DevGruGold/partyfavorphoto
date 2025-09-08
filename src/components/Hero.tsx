@@ -5,7 +5,7 @@ import { Switch } from "@/components/ui/switch";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { useCart } from "@/contexts/CartContext";
 import partyFavorLogo from "@/assets/party-favor-logo-new.png";
-import heroPhotoBoothImage from "@/assets/hero-photo-booth.jpg";
+
 import studioStationImage from "@/assets/studio-station.jpg";
 const weddingBoothImage = "/lovable-uploads/52305c16-be59-45d0-92ad-614aa25fefae.png";
 import corporateBoothImage from "@/assets/corporate-booth.jpg";
