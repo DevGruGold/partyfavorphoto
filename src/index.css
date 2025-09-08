@@ -17,8 +17,11 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 18%;
 
-    --primary: 220 13% 18%;
+    --primary: 280 100% 70%;
     --primary-foreground: 0 0% 98%;
+    
+    --primary-elegant: 280 80% 50%;
+    --primary-glow: 280 100% 80%;
 
     --secondary: 220 13% 91%;
     --secondary-foreground: 220 13% 18%;
@@ -37,6 +40,15 @@ All colors MUST be HSL.
     --ring: 220 13% 18%;
 
     --radius: 0.375rem;
+    
+    /* Mobile-optimized gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(280 100% 70%), hsl(260 100% 75%));
+    --gradient-overlay: linear-gradient(to right, hsl(0 0% 0% / 0.9), hsl(0 0% 0% / 0.7), hsl(0 0% 0% / 0.3));
+    --gradient-overlay-mobile: linear-gradient(to bottom, hsl(0 0% 0% / 0.8), hsl(0 0% 0% / 0.6));
+    
+    /* Better shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(280 100% 70% / 0.3);
+    --shadow-button: 0 4px 20px hsl(280 100% 70% / 0.4);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
