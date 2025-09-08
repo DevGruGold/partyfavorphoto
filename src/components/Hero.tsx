@@ -52,9 +52,9 @@ const Hero = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <img 
-              src={partyFavorLogo} 
+              src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png"
               alt="Party Favor Photo" 
-              className="h-12 object-contain"
+              className="h-16 md:h-20 object-contain"
             />
             <div className="flex items-center gap-3 md:gap-6 text-xs md:text-sm text-muted-foreground">
               <a href="tel:+12027980610" className="flex items-center gap-1 md:gap-2 hover:text-primary transition-colors font-inter">
