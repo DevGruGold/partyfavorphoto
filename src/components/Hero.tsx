@@ -5,6 +5,7 @@ import { Switch } from "@/components/ui/switch";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { useCart } from "@/contexts/CartContext";
 import partyFavorLogo from "@/assets/party-favor-logo-new.png";
+import celebrationBoothImage from "@/assets/celebration-booth.jpg";
 
 import studioStationImage from "@/assets/studio-station.jpg";
 const weddingBoothImage = "/lovable-uploads/52305c16-be59-45d0-92ad-614aa25fefae.png";
@@ -40,7 +41,7 @@ const Hero = () => {
       subtitle: t('hero.professional.subtitle'),
       price: t('hero.professional.price'),
       duration: t('hero.professional.duration'),
-      image: "/lovable-uploads/b4c9c35f-8998-4ae3-bd40-b484396595de.png",
+      image: celebrationBoothImage,
       description: t('hero.professional.description'),
       cta: t('hero.professional.cta')
     },
