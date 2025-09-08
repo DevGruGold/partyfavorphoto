@@ -63,17 +63,17 @@ const Gallery = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {galleryItems.map((item, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <div className="aspect-[4/3] relative overflow-hidden">
+              <div className="aspect-[3/2] relative overflow-hidden">
                 <img
                   src={item.image}
                   alt={`Photo booth moment ${index + 1}`}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center mb-3">
                   {[...Array(5)].map((_, starIndex) => (
                     <Star
@@ -83,10 +83,10 @@ const Gallery = () => {
                   ))}
                   <span className="ml-2 text-sm text-muted-foreground">5.0</span>
                 </div>
-                <blockquote className="text-foreground mb-4 italic">
+                <blockquote className="text-foreground mb-3 italic text-sm">
                   "{item.review.text}"
                 </blockquote>
-                <div className="flex justify-between items-center text-sm text-muted-foreground">
+                <div className="flex justify-between items-center text-xs text-muted-foreground">
                   <span className="font-medium">{item.review.author}</span>
                   <span>{item.review.date}</span>
                 </div>
