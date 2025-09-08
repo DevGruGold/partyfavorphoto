@@ -79,6 +79,26 @@ const Gallery = () => {
     <section id="gallery" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
+          <div className="flex justify-center items-center gap-6 mb-6">
+            <div className="flex items-center gap-2 bg-white rounded-lg p-3 shadow-sm">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <span className="font-bold text-lg">5.0</span>
+              <span className="text-sm text-muted-foreground">on The Knot</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white rounded-lg p-3 shadow-sm">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <span className="font-bold text-lg">5.0</span>
+              <span className="text-sm text-muted-foreground">on WeddingWire</span>
+            </div>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             See Our Work in Action
           </h2>
@@ -87,7 +107,7 @@ const Gallery = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {galleryItems.map((item, index) => (
             <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <div className="aspect-[3/2] relative overflow-hidden">
@@ -98,28 +118,51 @@ const Gallery = () => {
                 />
               </div>
               <CardContent className="p-4">
-                <div className="flex items-center mb-3">
-                  {[...Array(5)].map((_, starIndex) => (
-                    <Star
-                      key={starIndex}
-                      className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                  <span className="ml-2 text-sm text-muted-foreground">5.0</span>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, starIndex) => (
+                      <Star
+                        key={starIndex}
+                        className="h-3 w-3 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                  </div>
+                  <span className="text-xs text-muted-foreground">The Knot</span>
                 </div>
                 <blockquote className="text-foreground mb-3 italic text-sm">
                   "{item.review.text}"
                 </blockquote>
-                <div className="flex justify-between items-center text-xs text-muted-foreground">
+                <div className="flex justify-between items-center text-xs text-muted-foreground mb-2">
                   <span className="font-medium">{item.review.author}</span>
                   <span>{item.review.date}</span>
                 </div>
+                <a 
+                  href="https://www.theknot.com/marketplace/party-favor-photo-arlington-va-989593"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-primary hover:underline"
+                >
+                  Read full review →
+                </a>
               </CardContent>
             </Card>
           ))}
         </div>
 
         <div className="text-center mt-12">
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <a 
+              href="https://www.theknot.com/marketplace/party-favor-photo-arlington-va-989593"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <span>View all reviews on The Knot</span>
+              <span>→</span>
+            </a>
+            <span className="text-muted-foreground">|</span>
+            <span className="text-sm text-muted-foreground">10+ verified reviews</span>
+          </div>
           <p className="text-lg text-muted-foreground mb-4">
             Ready to create your own unforgettable moments?
           </p>
