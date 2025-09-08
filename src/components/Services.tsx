@@ -1,5 +1,5 @@
 import studioStationImage from "@/assets/studio-station.jpg";
-import weddingBoothImage from "@/assets/wedding-booth-fun.jpg";
+const weddingBoothImage = "/lovable-uploads/52305c16-be59-45d0-92ad-614aa25fefae.png";
 import corporateBoothImage from "@/assets/corporate-booth.jpg";
 import celebrationBoothImage from "@/assets/celebration-booth.jpg";
 import { Button } from "@/components/ui/button";
