@@ -112,8 +112,8 @@ const BookingCart = () => {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Book Your Photo Booth</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-5xl font-bold mb-4 font-playfair">Book Your Photo Booth</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
             Select your date, choose your photo package, and book instantly via WhatsApp
           </p>
         </div>
@@ -121,7 +121,7 @@ const BookingCart = () => {
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Date Selection */}
           <Card className="p-6">
-            <h3 className="text-2xl font-bold mb-4">Select Your Date</h3>
+            <h3 className="text-2xl font-bold mb-4 font-playfair">Select Your Date</h3>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -149,15 +149,15 @@ const BookingCart = () => {
 
             {/* Photo Options */}
             <div className="mt-8">
-              <h4 className="text-lg font-semibold mb-4">Choose Your Package</h4>
+              <h4 className="text-lg font-semibold mb-4 font-playfair">Choose Your Package</h4>
               <div className="space-y-4">
                 {photoOptions.map((option) => (
                   <div key={option.id} className="border rounded-lg p-4">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h5 className="font-semibold text-lg">{option.name}</h5>
-                        <p className="text-muted-foreground text-sm">{option.description}</p>
-                        <p className="text-primary font-semibold">${option.basePrice}/hour</p>
+                        <h5 className="font-semibold text-lg font-inter">{option.name}</h5>
+                        <p className="text-muted-foreground text-sm font-inter font-light">{option.description}</p>
+                        <p className="text-primary font-semibold font-inter">${option.basePrice}/hour</p>
                       </div>
                     </div>
                     
@@ -183,7 +183,7 @@ const BookingCart = () => {
           {/* Shopping Cart */}
           <Card className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold">Your Cart</h3>
+              <h3 className="text-2xl font-bold font-playfair">Your Cart</h3>
               <Button
                 variant="ghost"
                 size="sm"
@@ -198,8 +198,8 @@ const BookingCart = () => {
             {cartItems.length === 0 ? (
               <div className="text-center py-8 text-muted-foreground">
                 <ShoppingCart className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p>Your cart is empty</p>
-                <p className="text-sm">Add some photo packages above</p>
+                <p className="text-center py-8 text-muted-foreground font-inter">Your cart is empty</p>
+                <p className="text-sm text-center font-inter font-light">Add some photo packages above</p>
               </div>
             ) : (
               <div className="space-y-4">

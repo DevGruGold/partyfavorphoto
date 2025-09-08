@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Mail } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import partyFavorLogo from "@/assets/party-favor-logo.png";
+import partyFavorLogo from "@/assets/party-favor-logo-new.png";
 import heroPhotoBoothImage from "@/assets/hero-photo-booth.jpg";
 import studioStationImage from "@/assets/studio-station.jpg";
 import weddingBoothImage from "@/assets/wedding-booth-fun.jpg";
@@ -48,26 +48,26 @@ const Hero = () => {
   return (
     <section className="bg-background">
       {/* Slim Header */}
-      <header className="bg-white border-b border-border/10 relative z-50">
-        <div className="container mx-auto px-4 py-3">
+      <header className="bg-white/95 backdrop-blur-sm border-b border-border/10 relative z-50 shadow-sm">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <img 
               src={partyFavorLogo} 
               alt="Party Favor Photo" 
-              className="h-8 object-contain"
+              className="h-12 object-contain"
             />
             <div className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="tel:+12027980610" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <a href="tel:+12027980610" className="flex items-center gap-2 hover:text-primary transition-colors font-inter">
                 <Phone className="h-4 w-4" />
                 <span>(202) 798-0610</span>
               </a>
-              <a href="mailto:info@partyfavorphoto.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <a href="mailto:info@partyfavorphoto.com" className="flex items-center gap-2 hover:text-primary transition-colors font-inter">
                 <Mail className="h-4 w-4" />
                 <span>info@partyfavorphoto.com</span>
               </a>
               <Button 
                 size="sm" 
-                className="bg-green-600 hover:bg-green-700 text-white"
+                className="bg-green-600 hover:bg-green-700 text-white font-inter font-medium"
                 onClick={() => window.open('https://wa.me/50661500559?text=Hi!%20I%27m%20interested%20in%20your%20photo%20booth%20services.', '_blank')}
               >
                 WhatsApp
@@ -99,43 +99,47 @@ const Hero = () => {
                       <div className="max-w-2xl text-white">
                         {slide.isHero ? (
                           <>
-                            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                            <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight font-playfair">
                               {slide.title}
                             </h1>
-                            <p className="text-xl md:text-2xl mb-8 opacity-90">
+                            <p className="text-xl md:text-2xl mb-8 opacity-90 font-inter font-light">
                               {slide.subtitle}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                              <Button size="lg" className="px-8 py-4 text-lg">
+                              <Button size="lg" className="px-8 py-4 text-lg font-inter font-semibold">
                                 {slide.cta}
                               </Button>
-                          <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-black transition-all">
-                            View Our Work
-                          </Button>
+                              <Button 
+                                variant="outline" 
+                                size="lg" 
+                                className="px-8 py-4 text-lg border-2 border-white text-white bg-black/20 hover:bg-white hover:text-black transition-all font-inter font-semibold backdrop-blur-sm"
+                              >
+                                View Our Work
+                              </Button>
                             </div>
                           </>
                         ) : (
                           <>
                             <div className="mb-4">
-                              <p className="text-sm uppercase tracking-wide font-semibold opacity-90 mb-2">
+                              <p className="text-sm uppercase tracking-wide font-semibold opacity-90 mb-2 font-inter">
                                 {slide.subtitle}
                               </p>
-                              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                              <h2 className="text-4xl md:text-6xl font-bold mb-4 font-playfair">
                                 {slide.title}
                               </h2>
-                              <p className="text-lg md:text-xl mb-6 opacity-90">
+                              <p className="text-lg md:text-xl mb-6 opacity-90 font-inter font-light">
                                 {slide.description}
                               </p>
                               <div className="flex items-center gap-6 mb-6 text-sm">
-                                <span className="bg-white/20 px-3 py-1 rounded-md backdrop-blur-sm">
+                                <span className="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm font-inter font-semibold">
                                   {slide.price}
                                 </span>
-                                <span className="opacity-90">
+                                <span className="opacity-90 font-inter">
                                   Duration: {slide.duration}
                                 </span>
                               </div>
                             </div>
-                            <Button size="lg" className="px-8 py-4">
+                            <Button size="lg" className="px-8 py-4 font-inter font-semibold">
                               {slide.cta}
                             </Button>
                           </>

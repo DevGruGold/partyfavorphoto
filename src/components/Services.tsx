@@ -64,8 +64,8 @@ const Services = () => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4 text-foreground">Service Details</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-5xl font-bold mb-4 text-foreground font-playfair">Service Details</h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-inter font-light">
             Complete information about our professional photo booth packages
           </p>
         </div>
@@ -89,12 +89,12 @@ const Services = () => {
               {/* Service Content */}
               <div className="p-6">
                 <div className="mb-4">
-                  <p className="text-sm text-muted-foreground uppercase tracking-wide font-semibold mb-1">
+                  <p className="text-sm text-muted-foreground uppercase tracking-wide font-semibold mb-1 font-inter">
                     {service.subtitle}
                   </p>
-                  <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground mb-4">{service.description}</p>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                  <h3 className="text-2xl font-bold mb-2 font-playfair">{service.title}</h3>
+                  <p className="text-muted-foreground mb-4 font-inter font-light">{service.description}</p>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 font-inter">
                     <span>Duration: {service.duration}</span>
                   </div>
                 </div>
