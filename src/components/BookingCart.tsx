@@ -192,22 +192,22 @@ const BookingCart = () => {
   };
 
   return (
-    <section className="py-2 md:py-4 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 font-playfair">Book Your StudioStation</h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-inter">
+    <section className="py-4 sm:py-6 md:py-8 bg-background">
+      <div className="container mx-auto px-3 sm:px-4">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 font-playfair">Book Your StudioStation</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-inter px-2">
             Customize your photo booth experience with flexible hourly packages
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {/* Configuration Panel */}
-          <Card className="p-4 md:p-6 space-y-6">
+          <Card className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6">
             {/* Date Selection */}
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold font-playfair flex items-center gap-2">
-                <CalendarIcon className="h-5 w-5 text-primary" />
+            <div className="space-y-2 sm:space-y-3">
+              <h3 className="text-base sm:text-lg font-semibold font-playfair flex items-center gap-2">
+                <CalendarIcon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                 Select Event Date
               </h3>
               <div className="relative">
@@ -225,13 +225,13 @@ const BookingCart = () => {
                     }
                   }}
                   min={format(new Date(), 'yyyy-MM-dd')}
-                  className="w-full h-11 cursor-pointer hover:bg-accent/50 transition-colors pl-10"
+                  className="w-full h-10 sm:h-11 cursor-pointer hover:bg-accent/50 transition-colors pl-8 sm:pl-10 text-sm sm:text-base"
                   placeholder="Choose your event date"
                 />
-                <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                <CalendarIcon className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground pointer-events-none" />
               </div>
               {date && (
-                <p className="text-sm text-muted-foreground bg-muted/30 rounded-md p-2">
+                <p className="text-xs sm:text-sm text-muted-foreground bg-muted/30 rounded-md p-2">
                   Selected: {format(date, "EEEE, MMMM do, yyyy")}
                 </p>
               )}
@@ -240,9 +240,9 @@ const BookingCart = () => {
             <Separator />
 
             {/* Hour Selection */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold font-playfair flex items-center gap-2">
-                <Clock className="h-5 w-5 text-primary" />
+            <div className="space-y-3 sm:space-y-4">
+              <h3 className="text-base sm:text-lg font-semibold font-playfair flex items-center gap-2">
+                <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                 Service Duration
               </h3>
               
@@ -290,20 +290,20 @@ const BookingCart = () => {
 
               <Button
                 onClick={addToCart}
-                className="w-full h-11 font-semibold smooth-transition hover:scale-[1.02]"
+                className="w-full h-10 sm:h-11 font-semibold smooth-transition hover:scale-[1.02] text-sm sm:text-base"
                 disabled={selectedHours < 2}
               >
-                <Plus className="mr-2 h-4 w-4" />
+                <Plus className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                 Add {selectedHours}h Service - ${currentPrice}
               </Button>
             </div>
           </Card>
 
           {/* Shopping Cart */}
-          <Card className="p-4 md:p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold font-playfair flex items-center gap-2">
-                <ShoppingCart className="h-5 w-5 text-primary" />
+          <Card className="p-3 sm:p-4 md:p-6">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 className="text-base sm:text-lg font-semibold font-playfair flex items-center gap-2">
+                <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                 Your Cart
               </h3>
               <div className="flex items-center gap-2">
@@ -417,14 +417,14 @@ const BookingCart = () => {
                     
                     <Button
                       onClick={sendWhatsAppOrder}
-                      className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 h-11 smooth-transition hover:scale-[1.02]"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 sm:py-3 h-10 sm:h-11 smooth-transition hover:scale-[1.02] text-sm sm:text-base"
                       disabled={!date || cartItems.length === 0 || isLoading}
                     >
                       {isLoading ? (
                         "Opening WhatsApp..."
                       ) : (
                         <>
-                          <Zap className="mr-2 h-4 w-4" />
+                          <Zap className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                           Book via WhatsApp
                         </>
                       )}
