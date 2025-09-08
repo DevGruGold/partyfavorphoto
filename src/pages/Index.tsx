@@ -7,10 +7,12 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
-      <div className="-mt-16">
+      <div id="booking" className="-mt-16">
         <BookingCart />
       </div>
-      <Services />
+      <div id="services">
+        <Services />
+      </div>
       <Footer />
     </div>
   );

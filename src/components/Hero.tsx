@@ -8,6 +8,16 @@ import weddingBoothImage from "@/assets/wedding-booth-fun.jpg";
 import corporateBoothImage from "@/assets/corporate-booth.jpg";
 
 const Hero = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   const heroSlides = [
     {
       title: "Professional Photo Booth Services",
@@ -102,13 +112,18 @@ const Hero = () => {
                               {slide.subtitle}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                              <Button size="lg" className="px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-inter font-semibold">
+                              <Button 
+                                size="lg" 
+                                className="px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-inter font-semibold"
+                                onClick={() => scrollToSection('booking')}
+                              >
                                 {slide.cta}
                               </Button>
                               <Button 
                                 variant="outline" 
                                 size="lg" 
                                 className="px-6 md:px-8 py-3 md:py-4 text-base md:text-lg border-2 border-white text-white bg-white/10 hover:bg-white hover:text-primary transition-all font-inter font-semibold backdrop-blur-sm"
+                                onClick={() => scrollToSection('services')}
                               >
                                 View Our Work
                               </Button>
@@ -135,7 +150,11 @@ const Hero = () => {
                                 </span>
                               </div>
                             </div>
-                            <Button size="lg" className="px-6 md:px-8 py-3 md:py-4 font-inter font-semibold">
+                            <Button 
+                              size="lg" 
+                              className="px-6 md:px-8 py-3 md:py-4 font-inter font-semibold"
+                              onClick={() => scrollToSection('booking')}
+                            >
                               {slide.cta}
                             </Button>
                           </>
