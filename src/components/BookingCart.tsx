@@ -294,7 +294,7 @@ const BookingCart = () => {
           </Card>
 
           {/* Shopping Cart */}
-          <Card className="p-3 sm:p-4 md:p-6">
+          <Card id="cart" className="p-3 sm:p-4 md:p-6">
             <div className="flex items-center justify-between mb-3 sm:mb-4">
               <h3 className="text-base sm:text-lg font-semibold font-playfair flex items-center gap-2">
                 <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />

@@ -99,7 +99,7 @@ const Hero = () => {
               </a>
               <button 
                 className="relative flex items-center justify-center hover:text-primary transition-colors"
-                onClick={() => scrollToSection('booking')}
+                onClick={() => scrollToSection('cart')}
               >
                 <ShoppingCart className="h-6 w-6 text-muted-foreground" />
                 <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full text-xs w-5 h-5 flex items-center justify-center font-bold">
