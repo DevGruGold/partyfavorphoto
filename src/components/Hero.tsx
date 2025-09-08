@@ -75,7 +75,7 @@ const Hero = () => {
               {/* Phone Number - Always visible and clickable */}
               <a 
                 href="tel:+12027980610" 
-                className="flex items-center gap-2 hover:text-primary transition-colors font-inter text-muted-foreground font-medium"
+                className="flex items-center gap-2 hover:text-primary transition-colors font-sans text-muted-foreground font-semibold"
               >
                 <span className="text-sm md:text-base">(202) 798-0610</span>
               </a>
@@ -102,22 +102,22 @@ const Hero = () => {
                     {/* Mobile-First Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 md:bg-gradient-to-r md:from-black/50 md:via-black/30 md:to-black/10" />
                     
-                    {/* Content Overlay - Fills full screen */}
-                    <div className="absolute inset-0 flex flex-col justify-center items-center md:justify-center md:items-start px-5 py-12">
+                    {/* Content Overlay - Positioned higher on page */}
+                    <div className="absolute inset-0 flex flex-col justify-start items-center md:justify-start md:items-start px-5 pt-24 md:pt-32">
                       <div className="max-w-lg sm:max-w-xl md:max-w-2xl text-white text-center md:text-left md:ml-8 lg:ml-12">
                         {slide.isHero ? (
                           <>
-                            {/* Hero Content - Larger for mobile */}
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-playfair">
+                            {/* Hero Content - Corporate styling with drop shadows */}
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-sans drop-shadow-2xl" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.7)' }}>
                               {slide.title}
                             </h1>
-                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 opacity-95 font-inter font-light leading-relaxed">
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 opacity-95 font-sans font-medium leading-relaxed drop-shadow-lg" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.6)' }}>
                               {slide.subtitle}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto md:mx-0">
                               <Button 
                                 size="lg" 
-                                className="px-8 py-4 text-lg font-inter font-semibold bg-primary hover:bg-primary-elegant shadow-button hover:shadow-xl transition-all transform hover:-translate-y-1"
+                                className="px-8 py-4 text-lg font-sans font-semibold bg-primary hover:bg-primary-elegant shadow-button hover:shadow-xl transition-all transform hover:-translate-y-1"
                                 onClick={() => scrollToSection('booking')}
                               >
                                 {slide.cta}
@@ -125,7 +125,7 @@ const Hero = () => {
                               <Button 
                                 variant="outline" 
                                 size="lg" 
-                                className="px-8 py-4 text-lg border-2 border-white/80 text-white bg-white/10 hover:bg-white hover:text-primary transition-all font-inter font-semibold backdrop-blur-md"
+                                className="px-8 py-4 text-lg border-2 border-white/80 text-white bg-white/10 hover:bg-white hover:text-primary transition-all font-sans font-semibold backdrop-blur-md"
                                 onClick={() => scrollToSection('services')}
                               >
                                 View Our Work
@@ -134,24 +134,24 @@ const Hero = () => {
                           </>
                         ) : (
                           <>
-                            {/* Service Slides Content - Larger for mobile */}
+                            {/* Service Slides Content - Corporate styling with drop shadows */}
                             <div className="mb-8">
-                              <p className="text-base uppercase tracking-wide font-semibold opacity-90 mb-4 font-inter text-primary-glow">
+                              <p className="text-base uppercase tracking-wide font-semibold opacity-90 mb-4 font-sans text-primary-glow drop-shadow-md" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.5)' }}>
                                 {slide.subtitle}
                               </p>
-                              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-playfair leading-tight">
+                              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-sans leading-tight drop-shadow-2xl" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.7)' }}>
                                 {slide.title}
                               </h2>
-                              <p className="text-base sm:text-lg md:text-xl mb-8 opacity-95 font-inter font-light leading-relaxed">
+                              <p className="text-base sm:text-lg md:text-xl mb-8 opacity-95 font-sans font-medium leading-relaxed drop-shadow-lg" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.6)' }}>
                                 {slide.description}
                               </p>
                               
-                              {/* Pricing Info - Larger for mobile */}
+                              {/* Pricing Info - Corporate styling */}
                               <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 justify-center md:justify-start">
-                                <span className="bg-primary/20 border border-primary/40 px-6 py-3 rounded-full backdrop-blur-sm font-inter font-semibold text-primary-glow text-lg">
+                                <span className="bg-primary/20 border border-primary/40 px-6 py-3 rounded-full backdrop-blur-sm font-sans font-semibold text-primary-glow text-lg drop-shadow-md">
                                   {slide.price}
                                 </span>
-                                <span className="opacity-90 font-inter text-base">
+                                <span className="opacity-90 font-sans font-medium text-base drop-shadow-md" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
                                   Duration: {slide.duration}
                                 </span>
                               </div>
@@ -159,7 +159,7 @@ const Hero = () => {
                             
                             <Button 
                               size="lg" 
-                              className="px-8 py-4 font-inter font-semibold text-lg bg-primary hover:bg-primary-elegant shadow-button hover:shadow-xl transition-all transform hover:-translate-y-1"
+                              className="px-8 py-4 font-sans font-semibold text-lg bg-primary hover:bg-primary-elegant shadow-button hover:shadow-xl transition-all transform hover:-translate-y-1"
                               onClick={() => scrollToSection('booking')}
                             >
                               {slide.cta}
