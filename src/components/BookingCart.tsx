@@ -173,7 +173,7 @@ const BookingCart = () => {
         'Ready to book! Please confirm availability and provide event details.'
       ].join('\n');
 
-      const whatsappUrl = `https://wa.me/12027980610?text=${encodeURIComponent(orderDetails)}`;
+      const whatsappUrl = `https://wa.me/50661500559?text=${encodeURIComponent(orderDetails)}`;
       window.open(whatsappUrl, '_blank');
       
       toast({
