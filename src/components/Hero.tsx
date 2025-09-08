@@ -20,20 +20,20 @@ const Hero = () => {
 
   const heroSlides = [
     {
-      title: "Professional Photo Booth Services",
-      subtitle: "Award-winning experiences in the DMV area",
-      image: heroPhotoBoothImage,
-      cta: "Book Your Event",
-      isHero: true
-    },
-    {
       title: "StudioStation Photo Booth",
       subtitle: "Our flagship service",
       price: "From $498",
       duration: "2-5 hours",
       image: studioStationImage,
       description: "Professional DSLR camera with glamorous sequin backdrops, goofy props, QR code sharing and unlimited custom prints",
-      cta: "Book StudioStation"
+      cta: "Book StudioStation",
+      isHero: true
+    },
+    {
+      title: "Professional Photo Booth Services",
+      subtitle: "Award-winning experiences in the DMV area",
+      image: heroPhotoBoothImage,
+      cta: "Book Your Event"
     },
     {
       title: "Wedding Packages",

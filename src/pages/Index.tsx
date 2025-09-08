@@ -7,10 +7,10 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
-      <div id="booking" className="-mt-16">
+      <div id="booking" className="py-16 bg-background">
         <BookingCart />
       </div>
-      <div id="services">
+      <div id="services" className="py-16 bg-muted/30">
         <Services />
       </div>
       <Footer />
