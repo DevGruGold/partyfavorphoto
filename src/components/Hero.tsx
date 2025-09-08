@@ -38,7 +38,10 @@ const Hero = () => {
     {
       title: t('hero.professional.title'),
       subtitle: t('hero.professional.subtitle'),
-      image: heroPhotoBoothImage,
+      price: t('hero.professional.price'),
+      duration: t('hero.professional.duration'),
+      image: "/lovable-uploads/b4c9c35f-8998-4ae3-bd40-b484396595de.png",
+      description: t('hero.professional.description'),
       cta: t('hero.professional.cta')
     },
     {
