@@ -48,6 +48,30 @@ const Gallery = () => {
         date: "September 2021",
         text: "We are so happy that we chose Party Favor Photo for our photo booth! They were very responsive with all of our questions. Calvin was punctual, friendly, and very interactive with our guests."
       }
+    },
+    {
+      image: "/lovable-uploads/48af98af-f972-4155-bd47-0cf3c74b3b87.png",
+      review: {
+        author: "Catherine J",
+        date: "January 2020",
+        text: "Great service and value! The team was professional and the photo booth was a hit at our corporate event. Highly recommend for any occasion."
+      }
+    },
+    {
+      image: "/lovable-uploads/3cc2987c-2e74-4ec7-8078-e34c7a1ae6f3.png",
+      review: {
+        author: "Krystal B",
+        date: "December 2018", 
+        text: "So glad we made the call to go with Party Favor Photo & decided at the last minute to get a photo booth. Guests had so much fun, and everything came together so well!"
+      }
+    },
+    {
+      image: "/lovable-uploads/ceede732-6be3-4495-8012-6c449e7756b0.png",
+      review: {
+        author: "Ellen K",
+        date: "September 2018",
+        text: "We just used Party Favor Photo for my daughter's wedding and the photo booth was a major highlight. They are professional, fun and very easy to work with! The quality of the photos is extremely high."
+      }
     }
   ];
 

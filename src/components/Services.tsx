@@ -1,6 +1,7 @@
 import studioStationImage from "@/assets/studio-station.jpg";
 import weddingBoothImage from "@/assets/wedding-booth-fun.jpg";
 import corporateBoothImage from "@/assets/corporate-booth.jpg";
+import celebrationBoothImage from "@/assets/celebration-booth.jpg";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 
@@ -57,6 +58,24 @@ const Services = () => {
         "Custom print layouts"
       ],
       description: "Add excitement to your corporate events, holiday parties, and team building activities with our professional photo booth services."
+    },
+    {
+      title: "Celebration Packages",
+      subtitle: "Perfect for birthdays, bar mitzvahs & quinceañeras",
+      image: celebrationBoothImage,
+      price: "From $595",
+      duration: "3-5 hours",
+      features: [
+        "Custom balloon arches",
+        "Celebration-themed props",
+        "Age-appropriate backdrops",
+        "Cultural celebration elements",
+        "Custom print designs",
+        "Party coordination",
+        "Themed decoration setup",
+        "Social media sharing"
+      ],
+      description: "Make milestone celebrations unforgettable with our specialized packages for birthdays, bar mitzvahs, quinceañeras, and other special occasions."
     }
   ];
 
@@ -72,7 +91,7 @@ const Services = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div key={index} className="bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-shadow duration-300">
               {/* Service Image */}
