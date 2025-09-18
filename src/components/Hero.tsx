@@ -68,8 +68,8 @@ const Hero = () => {
   return (
     <section className="bg-background">
       {/* Mobile-Optimized Header */}
-      <header className="bg-white/98 backdrop-blur-sm border-b border-border/20 relative z-50 shadow-lg">
-        <div className="container mx-auto px-4 py-3">
+      <header className="bg-white backdrop-blur-sm border-b border-border/20 relative z-50 shadow-lg">
+        <div className="container mx-auto px-4 py-4 md:py-6">
           <div className="flex items-center justify-between">
             {/* Language Toggle - Left side */}
             <div className="flex items-center gap-2">
@@ -84,12 +84,12 @@ const Hero = () => {
               />
             </div>
             
-            {/* Logo - Centered */}
-            <div className="absolute left-1/2 transform -translate-x-1/2">
+            {/* Logo - Centered with proper background */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 bg-white px-6 py-3 rounded-lg shadow-sm">
               <img 
                 src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png"
                 alt="Party Favor Photo" 
-                className="h-20 sm:h-24 md:h-28 lg:h-32 object-contain"
+                className="h-16 sm:h-20 md:h-24 lg:h-28 object-contain"
               />
             </div>
             
