@@ -160,6 +160,11 @@ const translations = {
     'booking.phoneNumber': '(202) 798-0610',
     'booking.emailAddress': 'info@partyfavorphoto.com',
 
+    // Announcement
+    'announcement.title': 'Exciting News! We\'re Expanding to Dallas-Fort Worth',
+    'announcement.subtitle': 'Listen to our founder\'s personal message about this exciting expansion while continuing to serve the DC area.',
+    'announcement.cta': 'Still serving DC, Maryland & Virginia • Now booking in Dallas-Fort Worth Metro',
+
     // Footer
     'footer.tagline': 'Creating unforgettable memories, one photo at a time.',
     'footer.quickLinks': 'Quick Links',
@@ -318,6 +323,11 @@ const translations = {
     'booking.quote': 'Obtener Cotización',
     'booking.phoneNumber': '(202) 798-0610',
     'booking.emailAddress': 'info@partyfavorphoto.com',
+
+    // Announcement
+    'announcement.title': '¡Noticias Emocionantes! Nos Expandimos a Dallas-Fort Worth',
+    'announcement.subtitle': 'Escucha el mensaje personal de nuestro fundador sobre esta emocionante expansión mientras continuamos sirviendo el área de DC.',
+    'announcement.cta': 'Aún sirviendo DC, Maryland y Virginia • Ahora reservando en el Metro de Dallas-Fort Worth',
 
     // Footer
     'footer.tagline': 'Creando recuerdos inolvidables, una foto a la vez.',
