@@ -4,6 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Switch } from "@/components/ui/switch";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { useCart } from "@/contexts/CartContext";
+import RelocationAnnouncement from "@/components/RelocationAnnouncement";
 import partyFavorLogo from "@/assets/party-favor-logo-new.png";
 import celebrationBoothImage from "@/assets/celebration-booth.jpg";
 
@@ -67,11 +68,59 @@ const Hero = () => {
 
   return (
     <section className="bg-background">
-      {/* Mobile-Optimized Header */}
+      {/* Mobile-First Header */}
       <header className="bg-white backdrop-blur-sm border-b border-border/20 relative z-50 shadow-lg">
-        <div className="container mx-auto px-4 py-4 md:py-6">
-          <div className="flex items-center justify-between">
-            {/* Language Toggle - Left side */}
+        <div className="container mx-auto px-4 py-3">
+          {/* Mobile Layout - Stacked */}
+          <div className="block md:hidden">
+            {/* Top Row: Language Toggle and Cart */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <Globe className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-sans font-medium text-muted-foreground">
+                  {language === 'en' ? 'EN' : 'ES'}
+                </span>
+                <Switch
+                  checked={language === 'es'}
+                  onCheckedChange={toggleLanguage}
+                  className="scale-75"
+                />
+              </div>
+              <button 
+                className="relative flex items-center justify-center hover:text-primary transition-colors"
+                onClick={() => scrollToSection('cart')}
+              >
+                <ShoppingCart className="h-6 w-6 text-muted-foreground" />
+                <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full text-xs w-5 h-5 flex items-center justify-center font-bold">
+                  {getTotalItems()}
+                </span>
+              </button>
+            </div>
+            
+            {/* Center Row: Logo */}
+            <div className="flex justify-center mb-3">
+              <img 
+                src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png"
+                alt="Party Favor Photo" 
+                className="h-12 object-contain"
+              />
+            </div>
+            
+            {/* Bottom Row: Phone Number */}
+            <div className="flex justify-center">
+              <a 
+                href="tel:+12027980610" 
+                className="flex items-center gap-2 hover:text-primary transition-colors font-sans text-muted-foreground font-semibold"
+              >
+                <Phone className="h-4 w-4" />
+                <span className="text-sm">(202) 798-0610</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Desktop Layout - Three Column Grid */}
+          <div className="hidden md:grid md:grid-cols-3 md:items-center md:gap-4">
+            {/* Language Toggle - Left */}
             <div className="flex items-center gap-2">
               <Globe className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm font-sans font-medium text-muted-foreground">
@@ -84,22 +133,23 @@ const Hero = () => {
               />
             </div>
             
-            {/* Logo - Centered with proper background */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 bg-white px-6 py-3 rounded-lg shadow-sm">
+            {/* Logo - Center */}
+            <div className="flex justify-center">
               <img 
                 src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png"
                 alt="Party Favor Photo" 
-                className="h-16 sm:h-20 md:h-24 lg:h-28 object-contain"
+                className="h-16 lg:h-20 object-contain"
               />
             </div>
             
-            {/* Contact Actions - Right side */}
-            <div className="flex items-center gap-3">
+            {/* Contact Actions - Right */}
+            <div className="flex items-center gap-4 justify-end">
               <a 
                 href="tel:+12027980610" 
                 className="flex items-center gap-2 hover:text-primary transition-colors font-sans text-muted-foreground font-semibold"
               >
-                <span className="text-sm md:text-base">(202) 798-0610</span>
+                <Phone className="h-4 w-4" />
+                <span className="text-base">(202) 798-0610</span>
               </a>
               <button 
                 className="relative flex items-center justify-center hover:text-primary transition-colors"
@@ -114,6 +164,9 @@ const Hero = () => {
           </div>
         </div>
       </header>
+
+      {/* Relocation Announcement - Positioned under header */}
+      <RelocationAnnouncement />
 
       {/* Full-Screen Mobile Hero */}
       <div className="relative min-h-screen">

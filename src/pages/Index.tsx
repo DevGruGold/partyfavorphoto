@@ -1,4 +1,3 @@
-import RelocationAnnouncement from "@/components/RelocationAnnouncement";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import BookingCart from "@/components/BookingCart";
@@ -8,7 +7,6 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <RelocationAnnouncement />
       <Hero />
       <div id="booking" className="py-16 bg-background">
         <BookingCart />
