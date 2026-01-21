@@ -160,11 +160,23 @@
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- ChatGPT Custom Bot -->
+    <style>
+      /* Hide Lovable sticker */
+      #lovable-badge, 
+      [class*="lovable-badge"],
+      div[style*="z-index: 2147483647"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+    </style>
     <script>
       window.addEventListener('load', function() {
         const chatButton = document.createElement('button');
         chatButton.innerHTML = '💬 Ask Our AI';
-        chatButton.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #2563eb; color: white; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-family: Inter, sans-serif; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(37,99,235,0.3); z-index: 10000; transition: all 0.2s ease;';
+        // Relocated to bottom-left to avoid overlapping with common mobile UI elements and moved up slightly
+        chatButton.style.cssText = 'position: fixed; bottom: 80px; left: 20px; background: #2563eb; color: white; border: none; padding: 12px 20px; border-radius: 25px; cursor: pointer; font-family: Inter, sans-serif; font-weight: 600; font-size: 14px; box-shadow: 0 4px 12px rgba(37,99,235,0.3); z-index: 10000; transition: all 0.2s ease;';
         chatButton.id = 'chat-toggle';
         
         chatButton.addEventListener('click', function() {

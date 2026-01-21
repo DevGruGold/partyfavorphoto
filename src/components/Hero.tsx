@@ -187,15 +187,15 @@ const Hero = () => {
                     <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50 md:bg-gradient-to-r md:from-black/50 md:via-black/30 md:to-black/10" />
                     
                     {/* Content Overlay - Positioned higher on page */}
-                    <div className="absolute inset-0 flex flex-col justify-start items-center md:justify-start md:items-start px-5 pt-24 md:pt-32">
+                    <div className="absolute inset-0 flex flex-col justify-center items-center md:justify-start md:items-start px-5 pt-12 md:pt-32">
                       <div className="max-w-lg sm:max-w-xl md:max-w-2xl text-white text-center md:text-left md:ml-8 lg:ml-12">
                         {slide.isHero ? (
                           <>
                             {/* Hero Content - Corporate styling with drop shadows */}
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-sans drop-shadow-2xl" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.7)' }}>
+                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight font-sans drop-shadow-2xl" style={{ textShadow: '2px 4px 12px rgba(0,0,0,0.9)' }}>
                               {slide.title}
                             </h1>
-                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 opacity-95 font-sans font-medium leading-relaxed drop-shadow-lg" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.6)' }}>
+                            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 opacity-95 font-sans font-medium leading-relaxed drop-shadow-lg" style={{ textShadow: '1px 2px 6px rgba(0,0,0,0.8)' }}>
                               {slide.subtitle}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto md:mx-0">
@@ -223,10 +223,10 @@ const Hero = () => {
                               <p className="text-base uppercase tracking-wide font-semibold opacity-90 mb-4 font-sans text-primary-glow drop-shadow-md" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.5)' }}>
                                 {slide.subtitle}
                               </p>
-                              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-sans leading-tight drop-shadow-2xl" style={{ textShadow: '2px 4px 8px rgba(0,0,0,0.7)' }}>
+                              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-sans leading-tight drop-shadow-2xl" style={{ textShadow: '2px 4px 12px rgba(0,0,0,0.9)' }}>
                                 {slide.title}
                               </h2>
-                              <p className="text-base sm:text-lg md:text-xl mb-8 opacity-95 font-sans font-medium leading-relaxed drop-shadow-lg" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.6)' }}>
+                              <p className="text-base sm:text-lg md:text-xl mb-6 opacity-95 font-sans font-medium leading-relaxed drop-shadow-lg" style={{ textShadow: '1px 2px 6px rgba(0,0,0,0.8)' }}>
                                 {slide.description}
                               </p>
                               
