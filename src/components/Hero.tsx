@@ -198,7 +198,7 @@ const Hero = () => {
                                 variant="outline" 
                                 size="lg" 
                                 className="px-8 py-4 text-lg border-2 border-white/80 text-white bg-white/10 hover:bg-white hover:text-primary transition-all font-sans font-semibold backdrop-blur-md"
-                                onClick={() => scrollToSection('services')}
+                                onClick={() => scrollToSection('gallery')}
                               >
                                 {t('hero.viewWork')}
                               </Button>
