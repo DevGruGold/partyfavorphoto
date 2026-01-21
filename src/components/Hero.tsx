@@ -72,18 +72,18 @@ const Hero = () => {
       <header className="bg-white/95 backdrop-blur-md border-b border-border/10 sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-2">
           {/* Mobile Layout - Compact & Modern */}
-          <div className="flex md:hidden items-center justify-between">
-            {/* Left: Logo */}
+          <div className="flex md:hidden items-center justify-between py-1">
+            {/* Left: Logo - Doubled size from h-8 to h-16 */}
             <div className="flex-shrink-0">
               <img 
                 src="/lovable-uploads/4031df85-9654-492f-b28e-46b72d1d7fb8.png"
                 alt="Party Favor Photo" 
-                className="h-8 object-contain"
+                className="h-16 w-auto object-contain mix-blend-multiply"
               />
             </div>
 
             {/* Right: Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <a href="tel:+12027980610" className="bg-primary/10 p-2 rounded-full text-primary">
                 <Phone className="h-4 w-4" />
               </a>
