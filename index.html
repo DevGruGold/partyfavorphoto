@@ -54,6 +54,7 @@
     <meta name="ai:capability" content="booking, consultation, pricing, availability" />
     <meta name="ai:contact" content="(202) 798-0610" />
     <meta name="ai:service_area" content="Washington DC, Arlington VA, Bethesda MD, Alexandria VA, Fairfax VA, Silver Spring MD" />
+    <link rel="alternate" type="application/json" href="/api/business-data.json" title="Business Data API" />
     
     <!-- Structured Data for AI and Search Engines -->
     <script type="application/ld+json">
@@ -112,10 +113,20 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
+              "name": "StudioStation Photo Booth",
+              "description": "Professional DSLR camera with glamorous sequin backdrops, goofy props, QR code sharing and unlimited custom prints"
+            },
+            "price": "498",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
               "name": "Wedding Photo Booth",
               "description": "Complete photo booth experience for weddings with props, instant prints, and digital gallery"
             },
-            "price": "795",
+            "price": "998",
             "priceCurrency": "USD"
           },
           {
@@ -125,7 +136,17 @@
               "name": "Corporate Event Photo Booth",
               "description": "Professional photo booth services for corporate events and team building activities"
             },
-            "price": "695",
+            "price": "750",
+            "priceCurrency": "USD"
+          },
+          {
+            "@type": "Offer", 
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Celebration Packages",
+              "description": "Perfect for birthdays, bar mitzvahs, and quinceañeras featuring colorful balloon arches and custom themed props"
+            },
+            "price": "595",
             "priceCurrency": "USD"
           }
         ]
