@@ -3,12 +3,12 @@
 This API is designed for programmatic interaction by AI agents to check availability, calculate pricing, and facilitate photo booth bookings.
 
 ## Base URL
-`https://partyfavorphoto.com/api/booking`
+`https://partyfavorphoto.vercel.app/api/booking`
 
 ## Endpoints
 
 ### 1. Check Availability
-`GET /api/booking/availability`
+`GET https://partyfavorphoto.vercel.app/api/booking/availability`
 
 **Parameters:**
 - `date` (string, YYYY-MM-DD): The requested event date.
@@ -24,7 +24,7 @@ This API is designed for programmatic interaction by AI agents to check availabi
 ```
 
 ### 2. Calculate Price
-`POST /api/booking/calculate-price`
+`POST https://partyfavorphoto.vercel.app/api/booking/calculate-price`
 
 **Body:**
 - `service_type` (string): "StudioStation", "WeddingPackage", "CorporateEvent", or "CelebrationPackage".
@@ -47,7 +47,7 @@ This API is designed for programmatic interaction by AI agents to check availabi
 ```
 
 ### 3. Add to Cart / Initiate Session
-`POST /api/booking/add-to-cart`
+`POST https://partyfavorphoto.vercel.app/api/booking/add-to-cart`
 
 **Body:** Same as Calculate Price, plus:
 - `customer_info` (object): `{ "name": "...", "email": "..." }`
@@ -62,7 +62,7 @@ This API is designed for programmatic interaction by AI agents to check availabi
 ```
 
 ### 4. Checkout / Finalize Booking
-`POST /api/booking/checkout`
+`POST https://partyfavorphoto.vercel.app/api/booking/checkout`
 
 **Body:**
 - `booking_session_id` (string): The ID returned from add-to-cart.
